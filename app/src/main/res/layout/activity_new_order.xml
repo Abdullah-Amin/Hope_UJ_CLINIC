@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".my_flow.EmergencyActivity">
+    tools:context=".my_flow.NewOrderActivity">
 
     <ImageView
         android:id="@+id/image"
@@ -19,8 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Emergency"
-
+        android:text="New Order"
         android:textSize="@dimen/_40sdp"
         android:textColor="#043E9F"
         app:layout_constraintTop_toTopOf="@id/image"
@@ -30,11 +29,11 @@
         tools:ignore="SpUsage" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/newOrderBtn"
+        android:id="@+id/yourselfBtn"
         android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_100sdp"
-        android:onClick="newOrder"
-        android:text="New Order"
+        android:onClick="yourself"
+        android:text="Yourself"
         android:textAllCaps="false"
         android:textSize="@dimen/_23sdp"
         app:cornerRadius="@dimen/_10sdp"
@@ -47,17 +46,17 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/orderHistoryBtn"
+        android:id="@+id/otherBtn"
         android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_100sdp"
-        android:onClick="orderHistory"
-        android:text="Order History"
+        android:onClick="others"
+        android:text="Others"
         android:textAllCaps="false"
         android:textSize="@dimen/_23sdp"
         app:cornerRadius="@dimen/_10sdp"
         android:backgroundTint="#00B0FF"
         android:layout_marginVertical="@dimen/_70sdp"
-        app:layout_constraintTop_toBottomOf="@id/newOrderBtn"
+        app:layout_constraintTop_toBottomOf="@id/yourselfBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

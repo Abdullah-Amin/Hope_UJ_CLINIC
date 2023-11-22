@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".my_flow.YourselfActivity">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:src="@drawable/backhome"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yourself"
+        android:textSize="@dimen/_35sdp"
+        android:textColor="#043E9F"
+        app:layout_constraintTop_toTopOf="@id/image"
+        app:layout_constraintBottom_toBottomOf="@id/image"
+        app:layout_constraintStart_toStartOf="@id/image"
+        app:layout_constraintEnd_toEndOf="@id/image"
+        tools:ignore="SpUsage" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notes:"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="#043E9F"
+        android:textStyle="bold"
+        android:layout_marginVertical="@dimen/_3sdp"
+        app:layout_constraintBottom_toTopOf="@id/notesLayout"
+        app:layout_constraintStart_toStartOf="@id/notesLayout"
+        tools:ignore="SpUsage" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/notesLayout"
+        android:layout_width="@dimen/_310sdp"
+        android:layout_height="@dimen/_140sdp"
+        app:boxCornerRadiusTopStart="@dimen/_15sdp"
+        app:boxCornerRadiusTopEnd="@dimen/_15sdp"
+        app:boxCornerRadiusBottomStart="@dimen/_15sdp"
+        app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        android:background="@drawable/et_corners"
+        android:layout_marginVertical="@dimen/_40sdp"
+        app:layout_constraintTop_toBottomOf="@id/image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/notesEt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Yourself"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_15sdp"
+            android:backgroundTint="#B9E1F3"
+            android:background="@drawable/et_corners"
+            android:gravity="top|start"
+            android:padding="@dimen/_5sdp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/otherBtn"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        android:onClick="send"
+        android:text="send"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_23sdp"
+        app:cornerRadius="@dimen/_28sdp"
+        android:backgroundTint="#09347A"
+        android:layout_marginVertical="@dimen/_30sdp"
+        android:paddingVertical="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/notesLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

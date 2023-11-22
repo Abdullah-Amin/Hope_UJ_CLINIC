@@ -8,18 +8,19 @@ import android.view.View;
 
 import com.example.hope_uj_clinic.R;
 
-public class EmergencyActivity extends AppCompatActivity {
+public class NewOrderActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emergency);
+        setContentView(R.layout.activity_new_order);
     }
 
-    public void newOrder(View view) {
-        startActivity(new Intent(EmergencyActivity.this, NewOrderActivity.class));
+    public void yourself(View view) {
+        startActivity(new Intent(NewOrderActivity.this, YourselfActivity.class));
     }
 
-    public void orderHistory(View view) {
+    public void others(View view) {
+        startActivity(new Intent(NewOrderActivity.this, OthersActivity.class));
     }
 }
