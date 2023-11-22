@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/startpage"
+        android:label="Uj_Clinic"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Hope_Uj_Clinic"
+        tools:targetApi="31">
+        <activity
+            android:name=".EmergencyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetilseClinec"
+            android:exported="false" />
+        <activity
+            android:name=".MedcalHosutry"
+            android:exported="false" />
+        <activity
+            android:name=".Employee.Activitys.AddDataInClienc"
+            android:exported="false" />
+        <activity
+            android:name=".Employee.Activitys.viscalEmployee"
+            android:exported="false" />
+        <activity
+            android:name=".Employee.Activitys.ShowViscalEmployee"
+            android:exported="false" />
+        <activity
+            android:name=".Employee.Activitys.ShowByEmployee"
+            android:exported="false" />
+        <activity
+            android:name=".Employee.Activitys.DetilseClinecEmployee"
+            android:exported="false" />
+        <activity
+            android:name=".Employee.Activitys.BookingByEmployee"
+            android:exported="false" />
+        <activity
+            android:name=".Employee.Activitys.AppointmentsEmployee"
+            android:exported="false" />
+        <activity
+            android:name=".Employee.Activitys.AccountUserByEmployee"
+            android:exported="false" />
+        <activity
+            android:name=".Employee.Activitys.Users"
+            android:exported="false" />
+        <activity
+            android:name=".Employee.Activitys.HomeEmplyee"
+            android:exported="false" />
+        <activity
+            android:name=".Patient.Detilse"
+            android:exported="false" />
+        <activity
+            android:name=".Patient.VitalSigns"
+            android:exported="false" />
+        <activity
+            android:name=".Patient.ShowBooking"
+            android:exported="false" />
+        <activity
+            android:name=".Patient.Medicalhistory"
+            android:exported="false" />
+        <activity
+            android:name=".Patient.Electronic_Card"
+            android:exported="false" />
+        <activity
+            android:name=".Patient.Booking"
+            android:exported="false" />
+        <activity
+            android:name=".Patient.Appointments"
+            android:exported="false" />
+        <activity
+            android:name=".Patient.AccountUser"
+            android:exported="false" />
+        <activity
+            android:name=".Patient.UserHome"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.Admin"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

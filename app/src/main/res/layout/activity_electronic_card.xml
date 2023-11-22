@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Patient.Electronic_Card">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:background="@drawable/contactus"
+            android:gravity="center"
+
+            android:id="@+id/textAccount"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/nationality"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:background="#83CDF0"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintLeft_toRightOf="@id/m1"
+            android:text="055867509"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textAccount" />
+
+        <ImageView
+            android:id="@+id/m1"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="#83CDF0"
+            android:src="@drawable/baseline_phone_android_24"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="055867509"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textAccount" />
+
+
+        <TextView
+            android:id="@+id/gender"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:background="#83CDF0"
+            app:layout_constraintLeft_toRightOf="@id/m3"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="ujmsc@uj.edu.sa"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nationality" />
+
+        <ImageView
+            android:id="@+id/m2"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="#83CDF0"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/twitter"
+
+            app:layout_constraintBottom_toBottomOf="@+id/dataofbrith"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/m3" />
+
+
+        <TextView
+            android:id="@+id/dataofbrith"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#83CDF0"
+            android:gravity="center"
+
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/gender"
+            app:layout_constraintLeft_toRightOf="@id/m3"
+            android:layout_marginTop="@dimen/_20sdp"
+
+            app:layout_constraintRight_toRightOf="parent"
+
+            android:layout_marginRight="@dimen/_15sdp"
+            android:text=""
+
+            android:textColor="@color/white"
+
+            android:textSize="@dimen/_11sdp" />
+        <ImageView
+            android:id="@+id/m3"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="#83CDF0"
+            android:src="@drawable/baseline_chat_bubble_24"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:text="055867509"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/m1" />
+
+
+
+        <TextView
+            android:id="@+id/age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#83CDF0"
+            app:layout_constraintTop_toBottomOf="@id/dataofbrith"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:padding="@dimen/_17sdp"
+            android:text="https://maps.app.goo.gl/fCh9RCqXMhGrUUh5A?g_st=iw"
+            android:gravity="center"
+
+            android:textColor="@color/white"
+            android:drawablePadding="@dimen/_5sdp"
+            android:textSize="@dimen/_10sdp" />
+
+        <ImageView
+            android:id="@+id/m4"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="#83CDF0"
+            android:gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/baseline_location_on_24"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dataofbrith" />
+
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
