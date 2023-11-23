@@ -12,20 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hope_Uj_Clinic"
         tools:targetApi="31">
+
         <activity
-            android:name=".OrderHistoryActivity"
+            android:name=".my_flow.OrderDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".OthersActivity"
+            android:name=".my_flow.OrderHistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".YourselfActivity"
+            android:name=".my_flow.OthersActivity"
             android:exported="false" />
         <activity
-            android:name=".NewOrderActivity"
+            android:name=".my_flow.YourselfActivity"
             android:exported="false" />
         <activity
-            android:name=".EmergencyActivity"
+            android:name=".my_flow.NewOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".my_flow.EmergencyActivity"
             android:exported="false" />
         <activity
             android:name=".DetilseClinec"

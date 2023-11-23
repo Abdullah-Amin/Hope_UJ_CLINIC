@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".my_flow.OrderDetailsActivity">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:src="@drawable/backhome"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order History"
+        android:textSize="@dimen/_35sdp"
+        android:textColor="#043E9F"
+        app:layout_constraintTop_toTopOf="@id/image"
+        app:layout_constraintBottom_toBottomOf="@id/image"
+        app:layout_constraintStart_toStartOf="@id/image"
+        app:layout_constraintEnd_toEndOf="@id/image"
+        tools:ignore="SpUsage" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbarSize="@dimen/_1sdp"
+
+        app:layout_constraintTop_toBottomOf="@id/image"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/imageCard"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_90sdp"
+                app:strokeWidth="@dimen/_5sdp"
+                app:strokeColor="#09347A"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:id="@+id/patientImage"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:src="@mipmap/ic_launcher"
+                    android:scaleType="fitXY"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/mrn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MRN 34968468"
+                android:textColor="#043E9F"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageCard"/>
+
+            <TextView
+                android:id="@+id/patientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Patient Name"
+                android:textColor="#043E9F"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mrn"/>
+
+            <TextView
+                android:id="@+id/patientID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Patient ID"
+                android:textColor="#043E9F"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/patientName"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/orderStatusCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:strokeColor="#00B0FF"
+                android:backgroundTint="#61B9E1F3"
+                android:layout_marginVertical="@dimen/_15sdp"
+                app:strokeWidth="@dimen/_2sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/patientID">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Order status: "
+                        android:textColor="#083177"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_20sdp"
+                        android:layout_marginVertical="@dimen/_30sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/patientName"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STATUS"
+                        android:textColor="#083177"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_20sdp"
+                        android:layout_marginVertical="@dimen/_30sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/patientName"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nameLayout"
+                android:layout_width="@dimen/_260sdp"
+                android:layout_height="@dimen/_50sdp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:boxCornerRadiusTopStart="@dimen/_15sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_15sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_15sdp"
+                app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                app:layout_constraintTop_toBottomOf="@id/orderStatusCard"
+                app:layout_constraintEnd_toEndOf="@id/notesLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#B9E1F3"
+                    android:background="@drawable/et_corners"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/idLayout"
+                android:layout_width="@dimen/_260sdp"
+                android:layout_height="@dimen/_50sdp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:boxCornerRadiusTopStart="@dimen/_15sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_15sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_15sdp"
+                app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                app:layout_constraintTop_toBottomOf="@id/nameLayout"
+                app:layout_constraintEnd_toEndOf="@id/notesLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/idEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#B9E1F3"
+                    android:background="@drawable/et_corners"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="patient\nName"
+                android:minLines="2"
+                android:textSize="@dimen/_18sdp"
+                android:textColor="#043E9F"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:layout_constraintTop_toTopOf="@id/nameLayout"
+                app:layout_constraintBottom_toBottomOf="@id/nameLayout"
+                app:layout_constraintEnd_toStartOf="@id/nameLayout" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="patient\nID"
+                android:minLines="2"
+                android:textSize="@dimen/_18sdp"
+                android:textColor="#043E9F"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:layout_constraintTop_toTopOf="@id/idLayout"
+                app:layout_constraintBottom_toBottomOf="@id/idLayout"
+                app:layout_constraintEnd_toStartOf="@id/idLayout" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notes:"
+                android:textSize="@dimen/_18sdp"
+                android:textColor="#043E9F"
+                android:textStyle="bold"
+                android:layout_marginVertical="@dimen/_3sdp"
+                app:layout_constraintBottom_toTopOf="@id/notesLayout"
+                app:layout_constraintStart_toStartOf="@id/notesLayout"
+                tools:ignore="SpUsage" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/notesLayout"
+                android:layout_width="@dimen/_310sdp"
+                android:layout_height="@dimen/_140sdp"
+                app:boxCornerRadiusTopStart="@dimen/_15sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_15sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_15sdp"
+                app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                android:layout_marginVertical="@dimen/_70sdp"
+                app:layout_constraintTop_toBottomOf="@id/idLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/notesEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Yourself"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_15sdp"
+                    android:backgroundTint="#B9E1F3"
+                    android:background="@drawable/et_corners"
+                    android:gravity="top|start"
+                    android:padding="@dimen/_5sdp"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <FrameLayout
+                android:id="@+id/mapFrame"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_300sdp"
+                android:layout_marginVertical="@dimen/_40sdp"
+
+                app:layout_constraintTop_toBottomOf="@id/notesLayout"
+                app:layout_constraintStart_toStartOf="@id/notesLayout"
+                app:layout_constraintEnd_toEndOf="@id/notesLayout"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
