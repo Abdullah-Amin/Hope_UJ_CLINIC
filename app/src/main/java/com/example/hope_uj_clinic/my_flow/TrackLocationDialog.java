@@ -14,23 +14,35 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.hope_uj_clinic.R;
+import com.example.hope_uj_clinic.databinding.FragmentTrackLocationDialogBinding;
+import com.google.android.gms.location.FusedLocationProviderClient;
 
 public class TrackLocationDialog extends DialogFragment {
 
-    public TrackLocationDialog() {
-        // Required empty public constructor
+    private FusedLocationProviderClient client;
+    private FragmentTrackLocationDialogBinding binding;
+    private UserPermissionI userPermissionI;
+    public TrackLocationDialog(UserPermissionI userPermissionI) {
+        this.userPermissionI = userPermissionI;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_track_location_dialog, container, false);
+        binding = FragmentTrackLocationDialogBinding.inflate(LayoutInflater.from(
+                requireContext()), container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         requireDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+        binding.otherBtn.setOnClickListener(view1 -> {
+            userPermissionI.getPermission(binding.checkbox.isChecked());
+            getDialog().dismiss();
+        });
     }
 }

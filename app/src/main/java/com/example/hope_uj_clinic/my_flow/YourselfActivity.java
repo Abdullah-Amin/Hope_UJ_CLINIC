@@ -21,7 +21,12 @@ public class YourselfActivity extends AppCompatActivity {
     public void send(View view) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(new TrackLocationDialog(), "track")
+                .add(new TrackLocationDialog(new UserPermissionI() {
+                    @Override
+                    public void getPermission(boolean permission) {
+
+                    }
+                }), "track")
                 .commit();
         String txtNote = binding.notesEt.getText().toString();
     }

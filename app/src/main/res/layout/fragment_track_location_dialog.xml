@@ -34,6 +34,7 @@
             android:textSize="@dimen/_25sdp" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkbox"
             android:layout_width="@dimen/_260sdp"
             android:layout_height="wrap_content"
             android:text="I agree to be tracked"
