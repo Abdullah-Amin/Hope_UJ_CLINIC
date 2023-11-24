@@ -6,15 +6,23 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.hope_uj_clinic.R;
+import com.example.hope_uj_clinic.databinding.ActivityYourselfBinding;
 
 public class YourselfActivity extends AppCompatActivity {
 
+    private ActivityYourselfBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_yourself);
+        binding = ActivityYourselfBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 
     public void send(View view) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(new TrackLocationDialog(), "track")
+                .commit();
+        String txtNote = binding.notesEt.getText().toString();
     }
 }

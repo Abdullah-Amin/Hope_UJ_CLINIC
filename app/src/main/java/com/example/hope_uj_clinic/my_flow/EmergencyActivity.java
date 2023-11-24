@@ -10,16 +10,24 @@ import com.example.hope_uj_clinic.R;
 
 public class EmergencyActivity extends AppCompatActivity {
 
+    String userType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency);
+
+        userType = getIntent().getStringExtra("userType");
     }
 
     public void newOrder(View view) {
-        startActivity(new Intent(EmergencyActivity.this, NewOrderActivity.class));
+        Intent intent = new Intent(EmergencyActivity.this, NewOrderActivity.class);
+        intent.putExtra("userType", userType);
+        startActivity(intent);
     }
 
     public void orderHistory(View view) {
+        Intent intent = new Intent(EmergencyActivity.this, OrderHistoryActivity.class);
+        intent.putExtra("userType", userType);
+        startActivity(intent);
     }
 }

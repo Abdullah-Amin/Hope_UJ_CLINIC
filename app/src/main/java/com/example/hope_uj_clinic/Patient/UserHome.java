@@ -18,6 +18,7 @@ import com.example.hope_uj_clinic.Admin.Admin;
 import com.example.hope_uj_clinic.DatabaseHelper;
 import com.example.hope_uj_clinic.R;
 import com.example.hope_uj_clinic.databinding.ActivityUserHomeBinding;
+import com.example.hope_uj_clinic.my_flow.EmergencyActivity;
 
 public class UserHome extends AppCompatActivity {
     private SQLiteDatabase database;
@@ -32,6 +33,13 @@ public class UserHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_home);
+
+
+        binding.constraintLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(this, EmergencyActivity.class);
+            intent.putExtra("userType", "patient");
+            startActivity(intent);
+        });
 
         binding.Account.setOnClickListener(new View.OnClickListener() {
             @Override

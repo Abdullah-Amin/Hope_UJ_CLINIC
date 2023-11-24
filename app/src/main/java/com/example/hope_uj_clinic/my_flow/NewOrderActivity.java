@@ -10,17 +10,24 @@ import com.example.hope_uj_clinic.R;
 
 public class NewOrderActivity extends AppCompatActivity {
 
+    private String userType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_order);
+
+        userType = getIntent().getStringExtra("userType");
     }
 
     public void yourself(View view) {
-        startActivity(new Intent(NewOrderActivity.this, YourselfActivity.class));
+        Intent intent = new Intent(NewOrderActivity.this, YourselfActivity.class);
+        intent.putExtra("userType", userType);
+        startActivity(intent);
     }
 
     public void others(View view) {
-        startActivity(new Intent(NewOrderActivity.this, OthersActivity.class));
+        Intent intent = new Intent(NewOrderActivity.this, OthersActivity.class);
+        intent.putExtra("userType", userType);
+        startActivity(intent);
     }
 }

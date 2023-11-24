@@ -11,6 +11,7 @@ import android.view.View;
 import com.example.hope_uj_clinic.MedcalHosutry;
 import com.example.hope_uj_clinic.R;
 import com.example.hope_uj_clinic.databinding.ActivityHomeEmplyeeBinding;
+import com.example.hope_uj_clinic.my_flow.EmergencyActivity;
 
 public class HomeEmplyee extends AppCompatActivity {
     ActivityHomeEmplyeeBinding binding;
@@ -18,6 +19,12 @@ public class HomeEmplyee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding= DataBindingUtil.setContentView(this,R.layout.activity_home_emplyee);
+
+        binding.emergencyBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, EmergencyActivity.class);
+            intent.putExtra("userType", "employee");
+            startActivity(intent);
+        });
 
         binding.Account.setOnClickListener(new View.OnClickListener() {
             @Override

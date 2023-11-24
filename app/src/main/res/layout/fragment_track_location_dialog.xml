@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@android:color/transparent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".my_flow.TrackLocationDialog">
+
+    <LinearLayout
+        android:layout_width="@dimen/_380sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/location_track_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".my_flow.TrackLocationDialog">
+
+
+        <TextView
+
+            android:id="@+id/mrn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_60sdp"
+            android:text="Do you agree to have your location tracked?"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/_60sdp"
+            android:textSize="@dimen/_25sdp" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:layout_width="@dimen/_260sdp"
+            android:layout_height="wrap_content"
+            android:text="I agree to be tracked"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/_20sdp"
+            app:buttonTint="#83CDF0"
+            style="@style/Widget.Material3.CompoundButton.CheckBox"
+            android:layout_marginVertical="@dimen/_30sdp"/>
+
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/otherBtn"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        android:onClick="send"
+        android:text="send"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_23sdp"
+        app:cornerRadius="@dimen/_28sdp"
+        android:backgroundTint="#09347A"
+        android:layout_marginVertical="@dimen/_30sdp"
+        android:paddingVertical="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/notesLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</LinearLayout>
