@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.hope_uj_clinic.R;
 import com.example.hope_uj_clinic.databinding.FragmentTrackLocationDialogBinding;
@@ -42,7 +43,18 @@ public class TrackLocationDialog extends DialogFragment {
 
         binding.otherBtn.setOnClickListener(view1 -> {
             userPermissionI.getPermission(binding.checkbox.isChecked());
+            checkLocation();
             getDialog().dismiss();
         });
+    }
+
+    private void checkLocation() {
+        if(!locationIsEnabled()){
+            Toast.makeText(requireContext(), "Please enable location ", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean locationIsEnabled() {
+        return false;
     }
 }
