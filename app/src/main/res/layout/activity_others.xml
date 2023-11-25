@@ -71,6 +71,7 @@
             android:layout_height="match_parent"
             android:backgroundTint="#B9E1F3"
             android:textColor="#043E9F"
+            android:inputType="number"
             android:background="@drawable/et_corners"/>
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -27,19 +27,12 @@
             android:name=".my_flow.OthersActivity"
             android:exported="true" >
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
             android:name=".my_flow.YourselfActivity"
             android:exported="true" >
-
-
-
         </activity>
         <activity
             android:name=".my_flow.NewOrderActivity"
@@ -109,13 +102,26 @@
             android:exported="false" />
         <activity
             android:name=".Patient.UserHome"
-            android:exported="false" />
+            android:exported="true" >
+
+
+
+
+        </activity>
         <activity
             android:name=".Admin.Admin"
             android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="false" />
+            android:exported="true" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -2,13 +2,34 @@ package com.example.hope_uj_clinic.Employee.models;
 
 public class PatientLocation {
 
+    private String patientId;
+
+    private String personType;
     private Double latitude;
 
     private Double longitude;
 
-    public PatientLocation(Double latitude, Double longitude) {
+    public PatientLocation(String patientId, String personType, Double latitude, Double longitude) {
+        this.patientId = patientId;
+        this.personType = personType;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
+
+    public String getPersonType() {
+        return personType;
+    }
+
+    public void setPersonType(String personType) {
+        this.personType = personType;
     }
 
     public Double getLatitude() {
@@ -30,7 +51,9 @@ public class PatientLocation {
     @Override
     public String toString() {
         return "PatientLocation{" +
-                "latitude=" + latitude +
+                "patientId='" + patientId + '\'' +
+                ", personType='" + personType + '\'' +
+                ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 '}';
     }

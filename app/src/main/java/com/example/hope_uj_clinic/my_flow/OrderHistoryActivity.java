@@ -5,12 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.hope_uj_clinic.R;
+import com.example.hope_uj_clinic.databinding.ActivityOrderHistoryBinding;
+import com.example.hope_uj_clinic.databinding.ActivityOthersBinding;
 
 public class OrderHistoryActivity extends AppCompatActivity {
 
+    ActivityOrderHistoryBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_history);
+        binding = ActivityOrderHistoryBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+//        binding.orderRecycler.setAdapter(new OrderHistoryAdapter());
     }
 }

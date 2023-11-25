@@ -79,10 +79,11 @@ public class OthersActivity extends AppCompatActivity {
 //                                            binding.notesEt.setText((int) location.getLatitude());
                                             Log.i("abdo", "onSuccess: " + location.getLatitude());
                                             DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
-                                            db.insertNewOthersOrder(binding.idEt.getText().toString().isEmpty() ? " " : binding.idEt.getText().toString(),
+                                            db.insertNewOthersOrder(
                                                     binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
                                                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
-                                                    location.getLatitude(), location.getLongitude());
+                                                    "others", location.getLatitude(), location.getLongitude()
+                                            );
                                         }
                                     });
                         }
@@ -123,6 +124,12 @@ public class OthersActivity extends AppCompatActivity {
             Location mLastLocation = locationResult.getLastLocation();
             Log.i("abdo", "onLocationResult: " + mLastLocation.getLatitude());
             patientLocation = new PatientLocation(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+            Log.i("abdo", "onSuccess: " + mLastLocation.getLatitude());
+            DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
+            db.insertNewOthersOrder(
+                    binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
+                    binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
+                    "others", mLastLocation.getLatitude(), mLastLocation.getLongitude());
 
         }
     };
@@ -147,10 +154,10 @@ public class OthersActivity extends AppCompatActivity {
                                 Log.i("abdo", "onSuccess: " + location.getLatitude());
                                 patientLocation = new PatientLocation(location.getLatitude(), location.getLongitude());
                                 DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
-                                db.insertNewOthersOrder(binding.idEt.getText().toString().isEmpty() ? " " : binding.idEt.getText().toString(),
+                                db.insertNewOthersOrder(
                                         binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
                                         binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
-                                        location.getLatitude(), location.getLongitude());
+                                        "others", location.getLatitude(), location.getLongitude());
                             }
                         });
             }

@@ -49,6 +49,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     public static final String OTHERS_ID = "others_id";
     public static final String OTHERS_NAME = "others_name";
     public static final String OTHERS_NOTE = "others_note";
+    private static final String PERSON_TYPE  = "person_type";
     public static final String OTHERS_LAT = "others_lat";
     public static final String OTHERS_LNG = "others_lng";
 
@@ -150,16 +151,18 @@ public class DatabaseHelper extends SQLiteAssetHelper {
                 + ")");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS " + OTHERS_ORDERS + " ("
-                + OTHERS_ID + " INTEGER PRIMARY KEY,"
+                + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + OTHERS_NAME + " TEXT ,"
                 + OTHERS_NOTE + " TEXT ,"
+                + PERSON_TYPE + " TEXT ,"
                 + OTHERS_LAT + " REAL NOT NULL,"
                 + OTHERS_LNG + " REAL NOT NULL"
                 + ")");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS " + YOURSELF_ORDERS + " ("
-                + YOURSELF_ID + " INTEGER PRIMARY KEY,"
+                + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + YOURSELF_NOTE + " TEXT ,"
+                + PERSON_TYPE + " TEXT ,"
                 + YOURSELF_LAT + " REAL NOT NULL,"
                 + YOURSELF_LNG + " REAL NOT NULL"
                 + ")");
@@ -167,14 +170,14 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 //        db.close();
     }
 
-    public void insertNewOthersOrder(String othersId, String othersName, String othersNote,
-                                     double othersLat, double othersLng){
+    public void insertNewOthersOrder(String othersName, String othersNote, String personType,
+                                     double othersLat, double othersLng) {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(OTHERS_ID, othersId);
         values.put(OTHERS_NAME, othersName);
         values.put(OTHERS_NOTE, othersNote);
+        values.put(PERSON_TYPE, personType);
         values.put(OTHERS_LAT, othersLat);
         values.put(OTHERS_LNG, othersLng);
 
@@ -183,13 +186,13 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 //        db.close();
     }
 
-    public void insertNewYourselfOrder(String yourselfId, String yourselfNote,
-                                     double yourselfLat, double yourselfLng){
+    public void insertNewYourselfOrder(String yourselfNote, String personType,
+                                       double yourselfLat, double yourselfLng) {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(YOURSELF_ID, yourselfId);
         values.put(YOURSELF_NOTE, yourselfNote);
+        values.put(PERSON_TYPE, personType);
         values.put(YOURSELF_LAT, yourselfLat);
         values.put(YOURSELF_LNG, yourselfLng);
 
@@ -198,23 +201,23 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 //        db.close();
     }
 
-    public Cursor getOthersOrders(){
+    public Cursor getOthersOrders() {
         String query = "SELECT * FROM " + OTHERS_ORDERS;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
-        if (db != null){
+        if (db != null) {
             cursor = db.rawQuery(query, null);
         }
         return cursor;
     }
 
-    public Cursor getYourselfOrders(){
+    public Cursor getYourselfOrders() {
         String query = "SELECT * FROM " + YOURSELF_ORDERS;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
-        if (db != null){
+        if (db != null) {
             cursor = db.rawQuery(query, null);
         }
         return cursor;

@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="13dp"
-            android:hint="1234567@uj.edu.sa"
+            android:text="1234567@uj.edu.sa"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:paddingEnd="5dp"
@@ -97,7 +97,7 @@
 
             android:background="@drawable/item_editback"
             android:gravity="left|center"
-            android:hint="123456"
+            android:text="123456"
             android:paddingStart="5dp"
             android:paddingTop="5dp"
             android:paddingEnd="5dp"
