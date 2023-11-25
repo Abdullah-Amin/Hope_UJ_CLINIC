@@ -1,7 +1,9 @@
 package com.example.hope_uj_clinic.my_flow;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -43,18 +45,10 @@ public class TrackLocationDialog extends DialogFragment {
 
         binding.otherBtn.setOnClickListener(view1 -> {
             userPermissionI.getPermission(binding.checkbox.isChecked());
-            checkLocation();
+
             getDialog().dismiss();
         });
     }
 
-    private void checkLocation() {
-        if(!locationIsEnabled()){
-            Toast.makeText(requireContext(), "Please enable location ", Toast.LENGTH_SHORT).show();
-        }
-    }
 
-    private boolean locationIsEnabled() {
-        return false;
-    }
 }
