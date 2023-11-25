@@ -76,7 +76,7 @@ public class OthersActivity extends AppCompatActivity {
                                                 return;
                                             }
                                             patientLocation = new PatientLocation(location.getLatitude(), location.getLongitude());
-                                            binding.notesEt.setText((int) location.getLatitude());
+//                                            binding.notesEt.setText((int) location.getLatitude());
                                             Log.i("abdo", "onSuccess: " + location.getLatitude());
                                             DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
                                             db.insertNewOthersOrder(binding.idEt.getText().toString().isEmpty() ? " " : binding.idEt.getText().toString(),
@@ -146,6 +146,11 @@ public class OthersActivity extends AppCompatActivity {
                             public void onSuccess(Location location) {
                                 Log.i("abdo", "onSuccess: " + location.getLatitude());
                                 patientLocation = new PatientLocation(location.getLatitude(), location.getLongitude());
+                                DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
+                                db.insertNewOthersOrder(binding.idEt.getText().toString().isEmpty() ? " " : binding.idEt.getText().toString(),
+                                        binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
+                                        binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
+                                        location.getLatitude(), location.getLongitude());
                             }
                         });
             }

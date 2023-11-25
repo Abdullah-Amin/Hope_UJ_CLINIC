@@ -164,7 +164,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
                 + YOURSELF_LNG + " REAL NOT NULL"
                 + ")");
 
-        db.close();
+//        db.close();
     }
 
     public void insertNewOthersOrder(String othersId, String othersName, String othersNote,
@@ -180,7 +180,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 
         db.insert(OTHERS_ORDERS, null, values);
 
-        db.close();
+//        db.close();
     }
 
     public void insertNewYourselfOrder(String yourselfId, String yourselfNote,
@@ -195,7 +195,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 
         db.insert(YOURSELF_ORDERS, null, values);
 
-        db.close();
+//        db.close();
     }
 
     public Cursor getOthersOrders(){
