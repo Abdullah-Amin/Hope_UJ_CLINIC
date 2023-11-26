@@ -20,6 +20,12 @@ public class EmergencyActivity extends AppCompatActivity {
     }
 
     public void newOrder(View view) {
+        if (userType.equals("employee")){
+            Intent intent = new Intent(EmergencyActivity.this, OrderHistoryActivity.class);
+            intent.putExtra("userType", userType);
+            startActivity(intent);
+            return;
+        }
         Intent intent = new Intent(EmergencyActivity.this, NewOrderActivity.class);
         intent.putExtra("userType", userType);
         startActivity(intent);

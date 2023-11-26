@@ -28,6 +28,13 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         location = getIntent().getParcelableExtra("patient");
 
+        if (location.getPersonType().equals("yourself")){
+            binding.nameEt.setVisibility(View.GONE);
+            binding.idEt.setVisibility(View.GONE);
+        }
+
+
+
         binding.patientID.setText(location.getPatientId());
         binding.idEt.setText(location.getPatientId());
         binding.idEt.setEnabled(false);

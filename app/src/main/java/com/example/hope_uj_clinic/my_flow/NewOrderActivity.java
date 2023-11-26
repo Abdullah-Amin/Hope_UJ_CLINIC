@@ -7,14 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.hope_uj_clinic.R;
+import com.example.hope_uj_clinic.databinding.ActivityNewOrderBinding;
 
 public class NewOrderActivity extends AppCompatActivity {
 
     private String userType;
+
+    private ActivityNewOrderBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_order);
+        binding = ActivityNewOrderBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         userType = getIntent().getStringExtra("userType");
     }

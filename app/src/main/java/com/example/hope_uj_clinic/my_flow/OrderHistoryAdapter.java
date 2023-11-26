@@ -17,9 +17,14 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     private ArrayList<PatientLocation> patientLocation;
     private OrderDetailsI orderDetailsI;
 
-    public OrderHistoryAdapter(ArrayList<PatientLocation> patientLocation, OrderDetailsI orderDetailsI){
+    private String userType;
+
+    public OrderHistoryAdapter(ArrayList<PatientLocation> patientLocation,
+                               OrderDetailsI orderDetailsI,
+                               String userType){
         this.patientLocation = patientLocation;
         this.orderDetailsI = orderDetailsI;
+        this.userType = userType;
     }
 
     @NonNull
@@ -32,7 +37,14 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         holder.binding.orderId.setText(patientLocation.get(position).getPatientId());
-        holder.binding.orderStatus.setText(patientLocation.get(position).getPersonType());
+        if (userType.equals("employee")){
+            if (patientLocation.get(position).getPersonType().equals("yourself")){
+                holder.binding.orderStatus.setText("himself");
+            }
+        }else {
+            holder.binding.orderStatus.setText(patientLocation.get(position).getPersonType());
+        }
+
 
         holder.itemView.setOnClickListener(view -> {
             orderDetailsI.getOrder(patientLocation.get(position));
