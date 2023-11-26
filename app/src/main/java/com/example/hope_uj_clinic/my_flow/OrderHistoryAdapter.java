@@ -20,8 +20,8 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     private String userType;
 
     public OrderHistoryAdapter(ArrayList<PatientLocation> patientLocation,
-                               OrderDetailsI orderDetailsI,
-                               String userType){
+                               String userType,
+                               OrderDetailsI orderDetailsI){
         this.patientLocation = patientLocation;
         this.orderDetailsI = orderDetailsI;
         this.userType = userType;

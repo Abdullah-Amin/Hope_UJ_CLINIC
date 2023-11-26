@@ -191,6 +191,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
+                android:id="@+id/nameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="patient\nName"
@@ -205,6 +206,7 @@
                 app:layout_constraintEnd_toStartOf="@id/nameLayout" />
 
             <TextView
+                android:id="@+id/idTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="patient\nID"
