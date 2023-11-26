@@ -1,20 +1,44 @@
 package com.example.hope_uj_clinic.Employee.models;
 
-public class PatientLocation {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class PatientLocation implements Parcelable {
 
     private String patientId;
 
     private String personType;
-    private Double latitude;
+    private String latitude;
 
-    private Double longitude;
+    private String longitude;
 
-    public PatientLocation(String patientId, String personType, Double latitude, Double longitude) {
+    public PatientLocation(String patientId, String personType, String latitude, String longitude) {
         this.patientId = patientId;
         this.personType = personType;
         this.latitude = latitude;
         this.longitude = longitude;
     }
+
+    protected PatientLocation(Parcel in) {
+        patientId = in.readString();
+        personType = in.readString();
+        latitude = in.readString();
+        longitude = in.readString();
+    }
+
+    public static final Creator<PatientLocation> CREATOR = new Creator<PatientLocation>() {
+        @Override
+        public PatientLocation createFromParcel(Parcel in) {
+            return new PatientLocation(in);
+        }
+
+        @Override
+        public PatientLocation[] newArray(int size) {
+            return new PatientLocation[size];
+        }
+    };
 
     public String getPatientId() {
         return patientId;
@@ -32,19 +56,19 @@ public class PatientLocation {
         this.personType = personType;
     }
 
-    public Double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Double latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public Double getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Double longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
@@ -56,5 +80,18 @@ public class PatientLocation {
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(patientId);
+        parcel.writeString(personType);
+        parcel.writeString(latitude);
+        parcel.writeString(longitude);
     }
 }

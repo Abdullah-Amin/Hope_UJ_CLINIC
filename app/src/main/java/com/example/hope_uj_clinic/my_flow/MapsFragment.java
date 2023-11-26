@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.hope_uj_clinic.Employee.models.PatientLocation;
 import com.example.hope_uj_clinic.R;
+import com.example.hope_uj_clinic.databinding.FragmentMapsBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -21,6 +22,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsFragment extends Fragment {
 
     private PatientLocation patientLatLng;
+
+    private FragmentMapsBinding binding;
 
     public MapsFragment(PatientLocation patientLatLng){
         this.patientLatLng = patientLatLng;
@@ -39,9 +42,10 @@ public class MapsFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            LatLng patientPosition = new LatLng(patientLatLng.getLatitude(), patientLatLng.getLongitude());
+            LatLng patientPosition = new LatLng(Double.parseDouble(patientLatLng.getLatitude()),
+                    Double.parseDouble(patientLatLng.getLongitude()));
             googleMap.addMarker(new MarkerOptions().position(patientPosition).title("Marker in patient place"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(patientPosition));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(patientPosition, 40F));
         }
     };
 
@@ -50,7 +54,8 @@ public class MapsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_maps, container, false);
+        binding = FragmentMapsBinding.inflate(LayoutInflater.from(requireContext()), container, false);
+        return binding.getRoot();
     }
 
     @Override

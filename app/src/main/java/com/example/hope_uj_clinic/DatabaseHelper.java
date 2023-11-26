@@ -30,8 +30,8 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     public static final String TABLE_DOCTOR = "Doctor";
     public static final String TABLE_CLINIC = "Clinic";
     public static final String TABLE_VITAL_SIGNS = "vital_signs";
-    public static final String OTHERS_ORDERS = "others_orders";
-    public static final String YOURSELF_ORDERS = "yourself_orders";
+    public static final String ORDERS = "others_orders";
+//    public static final String YOURSELF_ORDERS = "yourself_orders";
 
     // Column names
     public static final String COLUMN_PASSWORD = "password";
@@ -47,17 +47,17 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 
     //Column names for others orders
     public static final String OTHERS_ID = "others_id";
-    public static final String OTHERS_NAME = "others_name";
-    public static final String OTHERS_NOTE = "others_note";
+    public static final String NAME = "others_name";
+    public static final String NOTE = "others_note";
     private static final String PERSON_TYPE  = "person_type";
-    public static final String OTHERS_LAT = "others_lat";
-    public static final String OTHERS_LNG = "others_lng";
+    public static final String LAT = "others_lat";
+    public static final String LNG = "others_lng";
 
-    //Column names for yourself orders
-    public static final String YOURSELF_ID = "yourself_id";
-    public static final String YOURSELF_NOTE = "yourself_note";
-    public static final String YOURSELF_LAT = "yourself_lat";
-    public static final String YOURSELF_LNG = "yourself_lng";
+//    //Column names for yourself orders
+//    public static final String YOURSELF_ID = "yourself_id";
+//    public static final String YOURSELF_NOTE = "yourself_note";
+//    public static final String YOURSELF_LAT = "yourself_lat";
+//    public static final String YOURSELF_LNG = "yourself_lng";
 
     // New column names for the booking table
     public static final String COLUMN_DATE = "date";
@@ -150,59 +150,59 @@ public class DatabaseHelper extends SQLiteAssetHelper {
                 + "FOREIGN KEY (" + COLUMN_VITAL_USER_NAME + ") REFERENCES " + TABLE_USERS + "(" + COLUMN_USER_ID + ")"
                 + ")");
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + OTHERS_ORDERS + " ("
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + ORDERS + " ("
                 + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + OTHERS_NAME + " TEXT ,"
-                + OTHERS_NOTE + " TEXT ,"
+                + NAME + " TEXT ,"
+                + NOTE + " TEXT ,"
                 + PERSON_TYPE + " TEXT ,"
-                + OTHERS_LAT + " REAL NOT NULL,"
-                + OTHERS_LNG + " REAL NOT NULL"
+                + LAT + " REAL NOT NULL,"
+                + LNG + " REAL NOT NULL"
                 + ")");
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + YOURSELF_ORDERS + " ("
-                + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + YOURSELF_NOTE + " TEXT ,"
-                + PERSON_TYPE + " TEXT ,"
-                + YOURSELF_LAT + " REAL NOT NULL,"
-                + YOURSELF_LNG + " REAL NOT NULL"
-                + ")");
+//        db.execSQL("CREATE TABLE IF NOT EXISTS " + YOURSELF_ORDERS + " ("
+//                + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+//                + YOURSELF_NOTE + " TEXT ,"
+//                + PERSON_TYPE + " TEXT ,"
+//                + YOURSELF_LAT + " REAL NOT NULL,"
+//                + YOURSELF_LNG + " REAL NOT NULL"
+//                + ")");
 
 //        db.close();
     }
 
-    public void insertNewOthersOrder(String othersName, String othersNote, String personType,
-                                     double othersLat, double othersLng) {
+    public void insertNewOrder(String name, String note, String personType,
+                                     double lat, double lng) {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(OTHERS_NAME, othersName);
-        values.put(OTHERS_NOTE, othersNote);
+        values.put(NAME, name);
+        values.put(NOTE, note);
         values.put(PERSON_TYPE, personType);
-        values.put(OTHERS_LAT, othersLat);
-        values.put(OTHERS_LNG, othersLng);
+        values.put(LAT, lat);
+        values.put(LNG, lng);
 
-        db.insert(OTHERS_ORDERS, null, values);
+        db.insert(ORDERS, null, values);
 
 //        db.close();
     }
 
-    public void insertNewYourselfOrder(String yourselfNote, String personType,
-                                       double yourselfLat, double yourselfLng) {
-        SQLiteDatabase db = getWritableDatabase();
+//    public void insertNewYourselfOrder(String yourselfNote, String personType,
+//                                       double yourselfLat, double yourselfLng) {
+//        SQLiteDatabase db = getWritableDatabase();
+//
+//        ContentValues values = new ContentValues();
+//        values.put(YOURSELF_NOTE, yourselfNote);
+//        values.put(PERSON_TYPE, personType);
+//        values.put(YOURSELF_LAT, yourselfLat);
+//        values.put(YOURSELF_LNG, yourselfLng);
+//
+//        db.insert(YOURSELF_ORDERS, null, values);
+//
+////        db.close();
+//    }
 
-        ContentValues values = new ContentValues();
-        values.put(YOURSELF_NOTE, yourselfNote);
-        values.put(PERSON_TYPE, personType);
-        values.put(YOURSELF_LAT, yourselfLat);
-        values.put(YOURSELF_LNG, yourselfLng);
-
-        db.insert(YOURSELF_ORDERS, null, values);
-
-//        db.close();
-    }
-
-    public Cursor getOthersOrders() {
-        String query = "SELECT * FROM " + OTHERS_ORDERS;
+    public Cursor getOrders() {
+        String query = "SELECT * FROM " + ORDERS;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
@@ -212,16 +212,16 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         return cursor;
     }
 
-    public Cursor getYourselfOrders() {
-        String query = "SELECT * FROM " + YOURSELF_ORDERS;
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = null;
-        if (db != null) {
-            cursor = db.rawQuery(query, null);
-        }
-        return cursor;
-    }
+//    public Cursor getYourselfOrders() {
+//        String query = "SELECT * FROM " + YOURSELF_ORDERS;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        Cursor cursor = null;
+//        if (db != null) {
+//            cursor = db.rawQuery(query, null);
+//        }
+//        return cursor;
+//    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -231,8 +231,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKING);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DOCTOR);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLINIC);
-        db.execSQL("DROP TABLE IF EXISTS " + OTHERS_ORDERS);
-        db.execSQL("DROP TABLE IF EXISTS " + YOURSELF_ORDERS);
+        db.execSQL("DROP TABLE IF EXISTS " + ORDERS);
 
         initializeDatabase();
     }

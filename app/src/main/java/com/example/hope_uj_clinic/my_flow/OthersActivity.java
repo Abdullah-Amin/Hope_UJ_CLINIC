@@ -75,11 +75,12 @@ public class OthersActivity extends AppCompatActivity {
                                                 requestNewLocationData();
                                                 return;
                                             }
-                                            patientLocation = new PatientLocation(location.getLatitude(), location.getLongitude());
 //                                            binding.notesEt.setText((int) location.getLatitude());
                                             Log.i("abdo", "onSuccess: " + location.getLatitude());
+//                                            String txt = String.valueOf(location.getLatitude());
+//                                            binding.nameEt.setText(txt);
                                             DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
-                                            db.insertNewOthersOrder(
+                                            db.insertNewOrder(
                                                     binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
                                                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                                     "others", location.getLatitude(), location.getLongitude()
@@ -122,11 +123,12 @@ public class OthersActivity extends AppCompatActivity {
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
+//            String txt = String.valueOf(mLastLocation.getLatitude());
+//            binding.nameEt.setText(txt);
             Log.i("abdo", "onLocationResult: " + mLastLocation.getLatitude());
-            patientLocation = new PatientLocation(mLastLocation.getLatitude(), mLastLocation.getLongitude());
             Log.i("abdo", "onSuccess: " + mLastLocation.getLatitude());
             DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
-            db.insertNewOthersOrder(
+            db.insertNewOrder(
                     binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                     "others", mLastLocation.getLatitude(), mLastLocation.getLongitude());
@@ -152,9 +154,10 @@ public class OthersActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Location location) {
                                 Log.i("abdo", "onSuccess: " + location.getLatitude());
-                                patientLocation = new PatientLocation(location.getLatitude(), location.getLongitude());
+//                                String txt = String.valueOf(location.getLatitude());
+//                                binding.nameEt.setText(txt);
                                 DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
-                                db.insertNewOthersOrder(
+                                db.insertNewOrder(
                                         binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
                                         binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                         "others", location.getLatitude(), location.getLongitude());

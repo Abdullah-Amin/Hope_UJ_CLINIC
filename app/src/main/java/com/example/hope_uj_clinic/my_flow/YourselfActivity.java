@@ -68,13 +68,12 @@ public class YourselfActivity extends AppCompatActivity {
                                                 requestNewLocationData();
                                                 return;
                                             }
-                                            patientLocation = new PatientLocation(location.getLatitude(), location.getLongitude());
 //                                            binding.notesEt.setText((int) location.getLatitude());
                                             Log.i("abdo", "onSuccess: " + location.getLatitude());
                                             DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
-                                            db.insertNewYourselfOrder(
+                                            db.insertNewOrder("",
                                                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
-                                                    "yours", location.getLatitude(), location.getLongitude()
+                                                    "yourself", location.getLatitude(), location.getLongitude()
                                             );
                                         }
                                     });
@@ -110,12 +109,11 @@ public class YourselfActivity extends AppCompatActivity {
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
             Log.i("abdo", "onLocationResult: " + mLastLocation.getLatitude());
-            patientLocation = new PatientLocation(mLastLocation.getLatitude(), mLastLocation.getLongitude());
             Log.i("abdo", "onSuccess: " + mLastLocation.getLatitude());
             DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
-            db.insertNewYourselfOrder(
+            db.insertNewOrder("",
                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
-                    "yours", mLastLocation.getLatitude(), mLastLocation.getLongitude());
+                    "yourself", mLastLocation.getLatitude(), mLastLocation.getLongitude());
 
         }
     };
@@ -139,11 +137,10 @@ public class YourselfActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Location location) {
                                 Log.i("abdo", "onSuccess: " + location.getLatitude());
-                                patientLocation = new PatientLocation(location.getLatitude(), location.getLongitude());
                                 DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
-                                db.insertNewYourselfOrder(
+                                db.insertNewOrder("",
                                         binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
-                                        "yours", location.getLatitude(), location.getLongitude());
+                                        "yourself", location.getLatitude(), location.getLongitude());
                             }
                         });
             }
