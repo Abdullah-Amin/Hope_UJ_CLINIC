@@ -15,7 +15,6 @@ public class PatientLocation implements Parcelable {
 
     private String note;
     private String latitude;
-
     private String longitude;
 
     public PatientLocation(String patientId,String name, String note, String personType, String latitude, String longitude) {
@@ -29,6 +28,8 @@ public class PatientLocation implements Parcelable {
 
     protected PatientLocation(Parcel in) {
         patientId = in.readString();
+        name = in.readString();
+        note = in.readString();
         personType = in.readString();
         latitude = in.readString();
         longitude = in.readString();
@@ -112,10 +113,10 @@ public class PatientLocation implements Parcelable {
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeString(patientId);
+        parcel.writeString(name);
+        parcel.writeString(note);
         parcel.writeString(personType);
         parcel.writeString(latitude);
         parcel.writeString(longitude);
-        parcel.writeString(name);
-        parcel.writeString(note);
     }
 }

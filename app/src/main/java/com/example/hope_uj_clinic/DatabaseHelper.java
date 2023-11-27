@@ -212,6 +212,17 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         return cursor;
     }
 
+    public Cursor getUser() {
+        String query = "SELECT * FROM " + TABLE_USERS;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
 //    public Cursor getYourselfOrders() {
 //        String query = "SELECT * FROM " + YOURSELF_ORDERS;
 //        SQLiteDatabase db = this.getReadableDatabase();

@@ -35,7 +35,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
             binding.idTV.setVisibility(View.GONE);
         }
 
-
         binding.patientID.setText(location.getPatientId());
         binding.idEt.setText(location.getPatientId());
         binding.patientName.setText(location.getName());

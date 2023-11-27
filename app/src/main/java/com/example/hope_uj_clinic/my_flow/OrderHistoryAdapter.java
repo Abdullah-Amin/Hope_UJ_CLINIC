@@ -16,7 +16,6 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
     private ArrayList<PatientLocation> patientLocation;
     private OrderDetailsI orderDetailsI;
-
     private String userType;
 
     public OrderHistoryAdapter(ArrayList<PatientLocation> patientLocation,
