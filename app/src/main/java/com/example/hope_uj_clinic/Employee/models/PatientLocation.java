@@ -10,12 +10,18 @@ public class PatientLocation implements Parcelable {
     private String patientId;
 
     private String personType;
+
+    private String name;
+
+    private String note;
     private String latitude;
 
     private String longitude;
 
-    public PatientLocation(String patientId, String personType, String latitude, String longitude) {
+    public PatientLocation(String patientId,String name, String note, String personType, String latitude, String longitude) {
         this.patientId = patientId;
+        this.name = name;
+        this.note = note;
         this.personType = personType;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -50,6 +56,22 @@ public class PatientLocation implements Parcelable {
 
     public String getPersonType() {
         return personType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public void setPersonType(String personType) {
@@ -93,5 +115,7 @@ public class PatientLocation implements Parcelable {
         parcel.writeString(personType);
         parcel.writeString(latitude);
         parcel.writeString(longitude);
+        parcel.writeString(name);
+        parcel.writeString(note);
     }
 }

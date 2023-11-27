@@ -1,29 +1,23 @@
 package com.example.hope_uj_clinic.my_flow;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.hope_uj_clinic.DatabaseHelper;
-import com.example.hope_uj_clinic.Employee.models.PatientLocation;
-import com.example.hope_uj_clinic.R;
 import com.example.hope_uj_clinic.databinding.ActivityOthersBinding;
-import com.google.android.gms.location.CurrentLocationRequest;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -35,9 +29,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 public class OthersActivity extends AppCompatActivity {
 
     FusedLocationProviderClient client;
-
-    private PatientLocation patientLocation;
     private ActivityOthersBinding binding;
+
+    private boolean isDialogVisible = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +41,6 @@ public class OthersActivity extends AppCompatActivity {
 
         client = LocationServices
                 .getFusedLocationProviderClient(OthersActivity.this);
-
     }
 
     public void send(View view) {
@@ -75,24 +68,32 @@ public class OthersActivity extends AppCompatActivity {
                                                 requestNewLocationData();
                                                 return;
                                             }
-//                                            binding.notesEt.setText((int) location.getLatitude());
                                             Log.i("abdo", "onSuccess: " + location.getLatitude());
-//                                            String txt = String.valueOf(location.getLatitude());
-//                                            binding.nameEt.setText(txt);
                                             DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
                                             db.insertNewOrder(
                                                     binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
                                                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                                     "others", location.getLatitude(), location.getLongitude()
                                             );
+                                            Toast.makeText(OthersActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
+                                            isDialogVisible = true;
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(OthersActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                                         }
                                     });
+                        }else {
+                            Toast.makeText(OthersActivity.this, "Location must be provided\nplease enable location", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }), "track")
                 .commit();
-
-        String txtNote = binding.notesEt.getText().toString();
+        if (!isDialogVisible){
+            startActivity(new Intent(OthersActivity.this, EmergencyActivity.class));
+            finish();
+        }
     }
 
     private boolean isLocationEnabled() {
@@ -103,28 +104,20 @@ public class OthersActivity extends AppCompatActivity {
 
     @SuppressLint("MissingPermission")
     private void requestNewLocationData() {
-
-        // Initializing LocationRequest
-        // object with appropriate methods
         LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(5);
         mLocationRequest.setFastestInterval(0);
         mLocationRequest.setNumUpdates(1);
 
-        // setting LocationRequest
-        // on FusedLocationClient
         client = LocationServices.getFusedLocationProviderClient(this);
         client.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
     }
 
     private LocationCallback mLocationCallback = new LocationCallback() {
-
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
-//            String txt = String.valueOf(mLastLocation.getLatitude());
-//            binding.nameEt.setText(txt);
             Log.i("abdo", "onLocationResult: " + mLastLocation.getLatitude());
             Log.i("abdo", "onSuccess: " + mLastLocation.getLatitude());
             DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
@@ -132,7 +125,12 @@ public class OthersActivity extends AppCompatActivity {
                     binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                     "others", mLastLocation.getLatitude(), mLastLocation.getLongitude());
-
+            Toast.makeText(OthersActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
+            isDialogVisible = false;
+            if (!isDialogVisible){
+                startActivity(new Intent(OthersActivity.this, EmergencyActivity.class));
+                finish();
+            }
         }
     };
 
@@ -154,15 +152,26 @@ public class OthersActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Location location) {
                                 Log.i("abdo", "onSuccess: " + location.getLatitude());
-//                                String txt = String.valueOf(location.getLatitude());
-//                                binding.nameEt.setText(txt);
                                 DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
                                 db.insertNewOrder(
                                         binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
                                         binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
-                                        "others", location.getLatitude(), location.getLongitude());
+                                        "others", location.getLatitude(), location.getLongitude()
+                                );
+                                Toast.makeText(OthersActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
+                                isDialogVisible = false;
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(OthersActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
+
+                if (!isDialogVisible){
+                    startActivity(new Intent(OthersActivity.this, EmergencyActivity.class));
+                    finish();
+                }
             }
         }
     }

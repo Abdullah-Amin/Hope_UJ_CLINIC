@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -17,22 +18,20 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.hope_uj_clinic.DatabaseHelper;
-import com.example.hope_uj_clinic.Employee.models.PatientLocation;
-import com.example.hope_uj_clinic.R;
 import com.example.hope_uj_clinic.databinding.ActivityYourselfBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 public class YourselfActivity extends AppCompatActivity {
 
     FusedLocationProviderClient client;
-
-    private PatientLocation patientLocation;
     private ActivityYourselfBinding binding;
+    private boolean isDialogVisible = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,47 +40,51 @@ public class YourselfActivity extends AppCompatActivity {
 
         client = LocationServices
                 .getFusedLocationProviderClient(YourselfActivity.this);
-
     }
 
     public void send(View view) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(new TrackLocationDialog(new UserPermissionI() {
-                    @Override
-                    public void getPermission(boolean permission) {
-                        if (permission) {
-                            if (!isLocationEnabled()){
-                                Toast.makeText(YourselfActivity.this, "Please enable location ", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                            if (ActivityCompat.checkSelfPermission(YourselfActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                                    && ActivityCompat.checkSelfPermission(YourselfActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                                requestPermissions();
-                                return;
-                            }
-                            client.getLastLocation()
-                                    .addOnSuccessListener(new OnSuccessListener<Location>() {
-                                        @Override
-                                        public void onSuccess(Location location) {
-                                            if (location == null){
-                                                requestNewLocationData();
-                                                return;
-                                            }
-//                                            binding.notesEt.setText((int) location.getLatitude());
-                                            Log.i("abdo", "onSuccess: " + location.getLatitude());
-                                            DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
-                                            db.insertNewOrder("",
-                                                    binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
-                                                    "yourself", location.getLatitude(), location.getLongitude()
-                                            );
-                                        }
-                                    });
+                .add(new TrackLocationDialog(permission -> {
+                    if (permission) {
+                        if (!isLocationEnabled()){
+                            Toast.makeText(YourselfActivity.this, "Please enable location ", Toast.LENGTH_SHORT).show();
+                            return;
                         }
+                        if (ActivityCompat.checkSelfPermission(YourselfActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                                && ActivityCompat.checkSelfPermission(YourselfActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            requestPermissions();
+                            return;
+                        }
+                        client.getLastLocation()
+                                .addOnSuccessListener(location -> {
+                                    if (location == null){
+                                        requestNewLocationData();
+                                        return;
+                                    }
+                                    Log.i("abdo", "onSuccess: " + location.getLatitude());
+                                    DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
+                                    db.insertNewOrder("",
+                                            binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
+                                            "yourself", location.getLatitude(), location.getLongitude()
+                                    );
+                                    Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
+                                    isDialogVisible = false;
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(YourselfActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                    }else {
+                        Toast.makeText(this, "Location must be provided\nplease enable location", Toast.LENGTH_SHORT).show();
                     }
                 }), "track")
                 .commit();
-        String txtNote = binding.notesEt.getText().toString();
+        if (!isDialogVisible){
+            startActivity(new Intent(YourselfActivity.this, EmergencyActivity.class));
+            finish();
+        }
     }
 
     private boolean isLocationEnabled() {
@@ -103,8 +106,7 @@ public class YourselfActivity extends AppCompatActivity {
         client.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
     }
 
-    private LocationCallback mLocationCallback = new LocationCallback() {
-
+    private final LocationCallback mLocationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
@@ -114,7 +116,12 @@ public class YourselfActivity extends AppCompatActivity {
             db.insertNewOrder("",
                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                     "yourself", mLastLocation.getLatitude(), mLastLocation.getLongitude());
-
+            Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
+            isDialogVisible = false;
+            if (!isDialogVisible){
+                startActivity(new Intent(YourselfActivity.this, EmergencyActivity.class));
+                finish();
+            }
         }
     };
 
@@ -141,8 +148,19 @@ public class YourselfActivity extends AppCompatActivity {
                                 db.insertNewOrder("",
                                         binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                         "yourself", location.getLatitude(), location.getLongitude());
+                                Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
+                                isDialogVisible = false;
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(YourselfActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
+                if (!isDialogVisible){
+                    startActivity(new Intent(YourselfActivity.this, EmergencyActivity.class));
+                    finish();
+                }
             }
         }
     }

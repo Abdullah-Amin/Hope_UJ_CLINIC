@@ -29,20 +29,23 @@ public class OrderDetailsActivity extends AppCompatActivity {
         location = getIntent().getParcelableExtra("patient");
 
         if (location.getPersonType().equals("yourself")){
-            binding.nameEt.setVisibility(View.GONE);
-            binding.idEt.setVisibility(View.GONE);
+            binding.nameLayout.setVisibility(View.GONE);
+            binding.idLayout.setVisibility(View.GONE);
             binding.nameTV.setVisibility(View.GONE);
             binding.idTV.setVisibility(View.GONE);
         }
 
 
-
         binding.patientID.setText(location.getPatientId());
         binding.idEt.setText(location.getPatientId());
+        binding.patientName.setText(location.getName());
+        binding.notesEt.setText(location.getNote());
+        binding.nameEt.setText(location.getName());
+        binding.personType.setText(location.getPersonType());
+
         binding.idEt.setEnabled(false);
         binding.nameEt.setEnabled(false);
         binding.notesEt.setEnabled(false);
-        binding.personType.setText(location.getPersonType());
 
         FragmentManager fm = getSupportFragmentManager();
         SupportMapFragment supportMapFragment =  SupportMapFragment.newInstance();
