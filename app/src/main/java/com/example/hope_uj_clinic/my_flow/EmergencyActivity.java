@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.hope_uj_clinic.R;
@@ -25,6 +26,7 @@ public class EmergencyActivity extends AppCompatActivity {
         if (userType.equals("employee")){
             Intent intent = new Intent(EmergencyActivity.this, OrderHistoryActivity.class);
             intent.putExtra("userType", userType);
+            Log.i("abdo", "orderHistory: " + userType);
             startActivity(intent);
             return;
         }
@@ -37,6 +39,7 @@ public class EmergencyActivity extends AppCompatActivity {
     public void orderHistory(View view) {
         Intent intent = new Intent(EmergencyActivity.this, OrderHistoryActivity.class);
         intent.putExtra("userType", userType);
+        Log.i("abdo", "orderHistory: " + userType);
         intent.putExtra("user_id", userId);
         startActivity(intent);
     }

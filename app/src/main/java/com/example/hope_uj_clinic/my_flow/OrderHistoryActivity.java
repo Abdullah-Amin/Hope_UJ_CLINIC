@@ -31,6 +31,8 @@ public class OrderHistoryActivity extends AppCompatActivity {
         locations = new ArrayList<>();
 
         String userType = getIntent().getStringExtra("userType");
+        Log.i("abdo", "orderHistory: before adapter " + userType);
+
         binding.orderRecycler.setAdapter(new OrderHistoryAdapter(getDataFromDatabase(), userType, new OrderDetailsI() {
             @Override
             public void getOrder(PatientLocation patientLocation) {

@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="13dp"
-            android:text="1234567@uj.edu.sa"
+            android:text="1234568@uj.edu.sa"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:paddingEnd="5dp"
