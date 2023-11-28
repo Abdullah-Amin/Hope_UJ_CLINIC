@@ -18,6 +18,7 @@ public class EmergencyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_emergency);
 
         userType = getIntent().getStringExtra("userType");
+        userId = getIntent().getStringExtra("user_id");
     }
 
     public void newOrder(View view) {
@@ -29,14 +30,14 @@ public class EmergencyActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(EmergencyActivity.this, NewOrderActivity.class);
         intent.putExtra("userType", userType);
-        intent.putExtra("userName", userId);
+        intent.putExtra("user_id", userId);
         startActivity(intent);
     }
 
     public void orderHistory(View view) {
         Intent intent = new Intent(EmergencyActivity.this, OrderHistoryActivity.class);
         intent.putExtra("userType", userType);
-        intent.putExtra("userName", userId);
+        intent.putExtra("user_id", userId);
         startActivity(intent);
     }
 }

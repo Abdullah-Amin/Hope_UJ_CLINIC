@@ -13,6 +13,7 @@ import com.example.hope_uj_clinic.Patient.DataClinics;
 import com.example.hope_uj_clinic.Patient.ModelVitalSigns;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -108,7 +109,6 @@ public class DatabaseHelper extends SQLiteAssetHelper {
                 + COLUMN_BIRTH + " TEXT, "
                 + "CHECK (" + COLUMN_AGE + " >= 16)"
                 + ")");
-
 
         // Create the booking table
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_BOOKING + " ("
@@ -213,13 +213,19 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     }
 
     public Cursor getUser(String user) {
-        String query = "SELECT * FROM " + TABLE_USERS + "WHERE user_id = " + user;
+        String query = "SELECT * FROM " + TABLE_USERS + " WHERE user_id = " + "'" + user + "'";
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
         if (db != null) {
             cursor = db.rawQuery(query, null);
         }
+        if (cursor != null){
+            Log.i("abdo", "getUser: cursor not null " + cursor.getCount() + " " + user);
+        }
+//        while (cursor.()){
+//            Log.i("abdo", "getUser: "+ cursor.getString(0));
+//        }
         return cursor;
     }
 

@@ -34,12 +34,13 @@ public class UserHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_home);
 
+        userId = getIntent().getStringExtra("user_id");
+        Log.i("abdo", "onCreate: home " + userId);
 
         binding.constraintLayout.setOnClickListener(view -> {
             Intent intent = new Intent(this, EmergencyActivity.class);
-            String name = binding.name.getText().toString();
             intent.putExtra("userType", "patient");
-            intent.putExtra("userName", userId);
+            intent.putExtra("user_id", userId);
             startActivity(intent);
         });
 
@@ -64,7 +65,7 @@ public class UserHome extends AppCompatActivity {
         binding.viscalhostriy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserHome.this,Medicalhistory.class);
+                Intent intent = new Intent(UserHome.this, Medicalhistory.class);
                 startActivity(intent);
             }
         });
@@ -73,7 +74,7 @@ public class UserHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(UserHome.this,VitalSigns.class);
+                Intent intent = new Intent(UserHome.this, VitalSigns.class);
                 startActivity(intent);
             }
         });
@@ -145,10 +146,7 @@ public class UserHome extends AppCompatActivity {
 
     private void fetchUserInfo() {
         // Retrieve the user_id from the intent
-        Intent intent = getIntent();
-        if (intent != null) {
-            userId = intent.getStringExtra("user_id");
-        }
+
 
         String[] columns = {DatabaseHelper.COLUMN_NAME, DatabaseHelper.COLUMN_USER_ID};
         String selection = DatabaseHelper.COLUMN_USER_ID + " = ?";

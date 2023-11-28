@@ -187,7 +187,7 @@ public class OthersActivity extends AppCompatActivity {
         while (cursor.moveToNext()){
             patientLocation =
                     new PatientLocation(
-                            cursor.getString(0),
+                            cursor.getString(8),
                             cursor.getString(1),
                             "",
                             cursor.getString(6),

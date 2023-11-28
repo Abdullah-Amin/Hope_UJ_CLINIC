@@ -34,6 +34,8 @@ public class YourselfActivity extends AppCompatActivity {
     FusedLocationProviderClient client;
     private ActivityYourselfBinding binding;
     private boolean isDialogVisible = true;
+
+    private String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,8 @@ public class YourselfActivity extends AppCompatActivity {
 
         client = LocationServices
                 .getFusedLocationProviderClient(YourselfActivity.this);
+
+        userId = getIntent().getStringExtra("user_id");
     }
 
     public void send(View view) {
@@ -165,16 +169,21 @@ public class YourselfActivity extends AppCompatActivity {
         }
     }
     public PatientLocation patientLocation(){
+
+//        userId = userId.split(".")[0];
+
         DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
-        String userId = getIntent().getStringExtra("userId");
         Cursor cursor = db.getUser(userId);
+
+        Log.i("abdo", "patientLocation: cursor " + userId);
 
         PatientLocation patientLocation = null;
 
-        while (cursor.moveToNext()){
+        if (cursor.moveToNext()){
+            Log.i("abdo", "patientLocation: cursor " + cursor.getString(0));
             patientLocation =
                     new PatientLocation(
-                            cursor.getString(0),
+                            cursor.getString(8),
                             cursor.getString(1),
                             "",
                             cursor.getString(6),
