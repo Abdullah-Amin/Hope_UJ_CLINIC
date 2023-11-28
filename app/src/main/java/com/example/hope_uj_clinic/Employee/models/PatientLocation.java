@@ -8,17 +8,16 @@ import androidx.annotation.NonNull;
 public class PatientLocation implements Parcelable {
 
     private String patientId;
-
+    private String orderId;
     private String personType;
-
     private String name;
-
     private String note;
     private String latitude;
     private String longitude;
 
-    public PatientLocation(String patientId,String name, String note, String personType, String latitude, String longitude) {
+    public PatientLocation(String patientId, String orderId, String name, String note, String personType, String latitude, String longitude) {
         this.patientId = patientId;
+        this.orderId = orderId;
         this.name = name;
         this.note = note;
         this.personType = personType;
@@ -28,12 +27,15 @@ public class PatientLocation implements Parcelable {
 
     protected PatientLocation(Parcel in) {
         patientId = in.readString();
+        orderId = in.readString();
         name = in.readString();
         note = in.readString();
         personType = in.readString();
         latitude = in.readString();
         longitude = in.readString();
     }
+
+
 
     public static final Creator<PatientLocation> CREATOR = new Creator<PatientLocation>() {
         @Override
@@ -46,6 +48,14 @@ public class PatientLocation implements Parcelable {
             return new PatientLocation[size];
         }
     };
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
     public String getPatientId() {
         return patientId;
@@ -113,6 +123,7 @@ public class PatientLocation implements Parcelable {
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeString(patientId);
+        parcel.writeString(orderId);
         parcel.writeString(name);
         parcel.writeString(note);
         parcel.writeString(personType);

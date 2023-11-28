@@ -70,7 +70,8 @@ public class YourselfActivity extends AppCompatActivity {
                                     }
                                     Log.i("abdo", "onSuccess: " + location.getLatitude());
                                     DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
-                                    db.insertNewOrder(patientLocation().getName(), patientLocation().getPatientId(),
+                                    db.insertNewOrder(
+                                            patientLocation().getName(), patientLocation().getPatientId(),
                                             binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                             "yourself", location.getLatitude(), location.getLongitude()
                                     );
@@ -88,7 +89,9 @@ public class YourselfActivity extends AppCompatActivity {
                 }), "track")
                 .commit();
         if (!isDialogVisible){
-            startActivity(new Intent(YourselfActivity.this, EmergencyActivity.class));
+            Intent intent = new Intent(YourselfActivity.this, EmergencyActivity.class);
+            intent.putExtra("userType", "yourself");
+            startActivity(intent);
             finish();
         }
     }
@@ -118,13 +121,16 @@ public class YourselfActivity extends AppCompatActivity {
             Log.i("abdo", "onLocationResult: " + mLastLocation.getLatitude());
             Log.i("abdo", "onSuccess: " + mLastLocation.getLatitude());
             DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
-            db.insertNewOrder(patientLocation().getName(), patientLocation().getPatientId(),
+            db.insertNewOrder(
+                    patientLocation().getName(), patientLocation().getPatientId(),
                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                     "yourself", mLastLocation.getLatitude(), mLastLocation.getLongitude());
             Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
             isDialogVisible = false;
             if (!isDialogVisible){
-                startActivity(new Intent(YourselfActivity.this, EmergencyActivity.class));
+                Intent intent = new Intent(YourselfActivity.this, EmergencyActivity.class);
+                intent.putExtra("userType", "yourself");
+                startActivity(intent);
                 finish();
             }
         }
@@ -149,11 +155,18 @@ public class YourselfActivity extends AppCompatActivity {
                             public void onSuccess(Location location) {
                                 Log.i("abdo", "onSuccess: " + location.getLatitude());
                                 DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
-                                db.insertNewOrder(patientLocation().getName(), patientLocation().getPatientId(),
+                                db.insertNewOrder(
+                                        patientLocation().getName(), patientLocation().getPatientId(),
                                         binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                         "yourself", location.getLatitude(), location.getLongitude());
                                 Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
                                 isDialogVisible = false;
+                                if (!isDialogVisible){
+                                    Intent intent = new Intent(YourselfActivity.this, EmergencyActivity.class);
+                                    intent.putExtra("userType", "yourself");
+                                    startActivity(intent);
+                                    finish();
+                                }
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -161,10 +174,6 @@ public class YourselfActivity extends AppCompatActivity {
                                 Toast.makeText(YourselfActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
-                if (!isDialogVisible){
-                    startActivity(new Intent(YourselfActivity.this, EmergencyActivity.class));
-                    finish();
-                }
             }
         }
     }
@@ -184,6 +193,7 @@ public class YourselfActivity extends AppCompatActivity {
             patientLocation =
                     new PatientLocation(
                             cursor.getString(8),
+                            "",
                             cursor.getString(1),
                             "",
                             cursor.getString(6),

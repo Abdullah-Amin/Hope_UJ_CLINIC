@@ -30,6 +30,10 @@ public class Login extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         dbHelper = new DatabaseHelper(this);
 
+        binding.register.setOnClickListener(view -> {
+            startActivity(new Intent(Login.this, Admin.class));
+        });
+
         binding.login.setOnClickListener(v -> {
             String user_id = binding.email.getText().toString();
             String password = binding.password.getText().toString();

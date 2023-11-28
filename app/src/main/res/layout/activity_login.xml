@@ -124,6 +124,21 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="50dp" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/item_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login"
+            android:text="register"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="50dp" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
