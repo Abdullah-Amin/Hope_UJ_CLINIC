@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import com.example.hope_uj_clinic.DatabaseHelper;
+import com.example.hope_uj_clinic.Employee.models.PatientLocation;
 import com.example.hope_uj_clinic.databinding.ActivityOthersBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -30,7 +32,6 @@ public class OthersActivity extends AppCompatActivity {
 
     FusedLocationProviderClient client;
     private ActivityOthersBinding binding;
-
     private boolean isDialogVisible = true;
 
     @Override
@@ -71,7 +72,7 @@ public class OthersActivity extends AppCompatActivity {
                                             Log.i("abdo", "onSuccess: " + location.getLatitude());
                                             DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
                                             db.insertNewOrder(
-                                                    binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
+                                                    patientLocation().getName(), patientLocation().getPatientId(),
                                                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                                     "others", location.getLatitude(), location.getLongitude()
                                             );
@@ -122,7 +123,7 @@ public class OthersActivity extends AppCompatActivity {
             Log.i("abdo", "onSuccess: " + mLastLocation.getLatitude());
             DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
             db.insertNewOrder(
-                    binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
+                    patientLocation().getName(), patientLocation().getPatientId(),
                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                     "others", mLastLocation.getLatitude(), mLastLocation.getLongitude());
             Toast.makeText(OthersActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
@@ -154,7 +155,7 @@ public class OthersActivity extends AppCompatActivity {
                                 Log.i("abdo", "onSuccess: " + location.getLatitude());
                                 DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
                                 db.insertNewOrder(
-                                        binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
+                                        patientLocation().getName(), patientLocation().getPatientId(),
                                         binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                         "others", location.getLatitude(), location.getLongitude()
                                 );
@@ -174,5 +175,24 @@ public class OthersActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public PatientLocation patientLocation(){
+        DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
+        String userId = getIntent().getStringExtra("userId");
+        Cursor cursor = db.getUser(userId);
+
+        PatientLocation patientLocation = null;
+
+        while (cursor.moveToNext()){
+            patientLocation =
+                    new PatientLocation(
+                            cursor.getString(0),
+                            cursor.getString(1),
+                            "",
+                            cursor.getString(6),
+                            "", "");
+        }
+        return patientLocation;
     }
 }

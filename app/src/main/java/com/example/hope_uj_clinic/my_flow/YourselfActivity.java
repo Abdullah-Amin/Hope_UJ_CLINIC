@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.hope_uj_clinic.DatabaseHelper;
+import com.example.hope_uj_clinic.Employee.models.PatientLocation;
 import com.example.hope_uj_clinic.databinding.ActivityYourselfBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -64,7 +66,7 @@ public class YourselfActivity extends AppCompatActivity {
                                     }
                                     Log.i("abdo", "onSuccess: " + location.getLatitude());
                                     DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
-                                    db.insertNewOrder("",
+                                    db.insertNewOrder(patientLocation().getName(), patientLocation().getPatientId(),
                                             binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                             "yourself", location.getLatitude(), location.getLongitude()
                                     );
@@ -86,7 +88,6 @@ public class YourselfActivity extends AppCompatActivity {
             finish();
         }
     }
-
     private boolean isLocationEnabled() {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
@@ -113,7 +114,7 @@ public class YourselfActivity extends AppCompatActivity {
             Log.i("abdo", "onLocationResult: " + mLastLocation.getLatitude());
             Log.i("abdo", "onSuccess: " + mLastLocation.getLatitude());
             DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
-            db.insertNewOrder("",
+            db.insertNewOrder(patientLocation().getName(), patientLocation().getPatientId(),
                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                     "yourself", mLastLocation.getLatitude(), mLastLocation.getLongitude());
             Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
@@ -130,7 +131,6 @@ public class YourselfActivity extends AppCompatActivity {
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION}, 1);
     }
-
     @Override
     public void
     onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -145,7 +145,7 @@ public class YourselfActivity extends AppCompatActivity {
                             public void onSuccess(Location location) {
                                 Log.i("abdo", "onSuccess: " + location.getLatitude());
                                 DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
-                                db.insertNewOrder("",
+                                db.insertNewOrder(patientLocation().getName(), patientLocation().getPatientId(),
                                         binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                         "yourself", location.getLatitude(), location.getLongitude());
                                 Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
@@ -163,5 +163,23 @@ public class YourselfActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+    public PatientLocation patientLocation(){
+        DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
+        String userId = getIntent().getStringExtra("userId");
+        Cursor cursor = db.getUser(userId);
+
+        PatientLocation patientLocation = null;
+
+        while (cursor.moveToNext()){
+            patientLocation =
+                    new PatientLocation(
+                            cursor.getString(0),
+                            cursor.getString(1),
+                            "",
+                            cursor.getString(6),
+                            "", "");
+        }
+        return patientLocation;
     }
 }

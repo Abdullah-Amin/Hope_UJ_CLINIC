@@ -37,7 +37,9 @@ public class UserHome extends AppCompatActivity {
 
         binding.constraintLayout.setOnClickListener(view -> {
             Intent intent = new Intent(this, EmergencyActivity.class);
+            String name = binding.name.getText().toString();
             intent.putExtra("userType", "patient");
+            intent.putExtra("userName", userId);
             startActivity(intent);
         });
 

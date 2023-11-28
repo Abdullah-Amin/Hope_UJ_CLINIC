@@ -52,12 +52,13 @@ public class OrderHistoryActivity extends AppCompatActivity {
         }else{
             while (cursor.moveToNext()){
                 Log.i("abdo", "getDataFromDatabase: "+ cursor.getString(0) + cursor.getString(3));
-                locations.add(new PatientLocation(cursor.getString(0),
-                        cursor.getString(1),
+                locations.add(new PatientLocation(
                         cursor.getString(2),
+                        cursor.getString(1),
                         cursor.getString(3),
                         cursor.getString(4),
-                        cursor.getString(5)));
+                        cursor.getString(5),
+                        cursor.getString(6)));
             }
         }
         return locations;

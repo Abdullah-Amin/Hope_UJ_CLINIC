@@ -20,8 +20,6 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteAssetHelper {
     private static final String DATABASE_NAME = "last_hope.dp.db";
     private static final int DATABASE_VERSION = 1;
-
-
     // Table names
     public static final String TABLE_ADMIN = "admin";
     public static final String TABLE_USERS = "users";
@@ -46,7 +44,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     public static final String COLUMN_USER_ID = "user_id";
 
     //Column names for others orders
-    public static final String OTHERS_ID = "others_id";
+    public static final String USER_ID = "user_id";
     public static final String NAME = "others_name";
     public static final String NOTE = "others_note";
     private static final String PERSON_TYPE  = "person_type";
@@ -153,6 +151,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + ORDERS + " ("
                 + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + NAME + " TEXT ,"
+                + USER_ID + " TEXT ,"
                 + NOTE + " TEXT ,"
                 + PERSON_TYPE + " TEXT ,"
                 + LAT + " REAL NOT NULL,"
@@ -170,12 +169,13 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 //        db.close();
     }
 
-    public void insertNewOrder(String name, String note, String personType,
+    public void insertNewOrder(String name, String userId, String note, String personType,
                                      double lat, double lng) {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(NAME, name);
+        values.put(USER_ID, userId);
         values.put(NOTE, note);
         values.put(PERSON_TYPE, personType);
         values.put(LAT, lat);
@@ -212,8 +212,8 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         return cursor;
     }
 
-    public Cursor getUser() {
-        String query = "SELECT * FROM " + TABLE_USERS;
+    public Cursor getUser(String user) {
+        String query = "SELECT * FROM " + TABLE_USERS + "WHERE user_id = " + user;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;

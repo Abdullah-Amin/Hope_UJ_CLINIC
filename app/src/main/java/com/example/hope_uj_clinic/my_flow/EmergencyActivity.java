@@ -11,6 +11,7 @@ import com.example.hope_uj_clinic.R;
 public class EmergencyActivity extends AppCompatActivity {
 
     String userType;
+    String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +29,14 @@ public class EmergencyActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(EmergencyActivity.this, NewOrderActivity.class);
         intent.putExtra("userType", userType);
+        intent.putExtra("userName", userId);
         startActivity(intent);
     }
 
     public void orderHistory(View view) {
         Intent intent = new Intent(EmergencyActivity.this, OrderHistoryActivity.class);
         intent.putExtra("userType", userType);
+        intent.putExtra("userName", userId);
         startActivity(intent);
     }
 }
