@@ -4,17 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.hope_uj_clinic.DatabaseHelper;
 import com.example.hope_uj_clinic.Employee.models.PatientLocation;
-import com.example.hope_uj_clinic.R;
 import com.example.hope_uj_clinic.databinding.ActivityOrderHistoryBinding;
-import com.example.hope_uj_clinic.databinding.ActivityOthersBinding;
 
 import java.util.ArrayList;
 
@@ -32,6 +28,10 @@ public class OrderHistoryActivity extends AppCompatActivity {
 
         String userType = getIntent().getStringExtra("userType");
         Log.i("abdo", "orderHistory: before adapter " + userType);
+
+        if (userType.equals("employee")){
+            binding.head.setText("New Order");
+        }
 
         binding.orderRecycler.setAdapter(new OrderHistoryAdapter(getDataFromDatabase(), userType, new OrderDetailsI() {
             @Override
