@@ -179,7 +179,7 @@ public class OthersActivity extends AppCompatActivity {
 
     public PatientLocation patientLocation(){
         DatabaseHelper db = new DatabaseHelper(OthersActivity.this);
-        String userId = getIntent().getStringExtra("userId");
+        String userId = getIntent().getStringExtra("user_id");
         Cursor cursor = db.getUser(userId);
 
         PatientLocation patientLocation = null;
