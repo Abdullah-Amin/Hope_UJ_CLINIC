@@ -74,6 +74,7 @@ public class OthersActivity extends AppCompatActivity {
                                             db.insertNewOrder(
                                                     binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
                                                     binding.idEt.getText().toString().isEmpty() ? " " : binding.idEt.getText().toString(),
+                                                    patientLocation().getUserName(),
                                                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                                     "others", location.getLatitude(), location.getLongitude()
                                             );
@@ -128,6 +129,7 @@ public class OthersActivity extends AppCompatActivity {
             db.insertNewOrder(
                     binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
                     binding.idEt.getText().toString().isEmpty() ? " " : binding.idEt.getText().toString(),
+                    patientLocation().getUserName(),
                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                     "others", mLastLocation.getLatitude(), mLastLocation.getLongitude());
             Toast.makeText(OthersActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
@@ -163,6 +165,7 @@ public class OthersActivity extends AppCompatActivity {
                                 db.insertNewOrder(
                                         binding.nameEt.getText().toString().isEmpty() ? " " : binding.nameEt.getText().toString(),
                                         binding.idEt.getText().toString().isEmpty() ? " " : binding.idEt.getText().toString(),
+                                        patientLocation().getUserName(),
                                         binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                         "others", location.getLatitude(), location.getLongitude()
                                 );
@@ -198,6 +201,7 @@ public class OthersActivity extends AppCompatActivity {
                     new PatientLocation(
                             cursor.getString(8),
                             "",
+                            userId,
                             cursor.getString(1),
                             "",
                             cursor.getString(6),

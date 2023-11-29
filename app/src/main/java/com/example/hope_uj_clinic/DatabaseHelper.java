@@ -47,6 +47,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     //Column names for others orders
     public static final String USER_ID = "user_id";
     public static final String NAME = "others_name";
+    public static final String USER_NAME = "user_name";
     public static final String NOTE = "others_note";
     private static final String PERSON_TYPE  = "person_type";
     public static final String LAT = "others_lat";
@@ -151,6 +152,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + ORDERS + " ("
                 + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + NAME + " TEXT ,"
+                + USER_NAME + " TEXT ,"
                 + USER_ID + " TEXT ,"
                 + NOTE + " TEXT ,"
                 + PERSON_TYPE + " TEXT ,"
@@ -169,13 +171,14 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 //        db.close();
     }
 
-    public void insertNewOrder(String name, String userId, String note, String personType,
+    public void insertNewOrder(String name, String userId, String userName, String note, String personType,
                                      double lat, double lng) {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(NAME, name);
         values.put(USER_ID, userId);
+        values.put(USER_NAME, userName);
         values.put(NOTE, note);
         values.put(PERSON_TYPE, personType);
         values.put(LAT, lat);

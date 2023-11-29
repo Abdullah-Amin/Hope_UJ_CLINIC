@@ -71,7 +71,7 @@ public class YourselfActivity extends AppCompatActivity {
                                     Log.i("abdo", "onSuccess: " + location.getLatitude());
                                     DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
                                     db.insertNewOrder(
-                                            patientLocation().getName(), patientLocation().getPatientId(),
+                                            patientLocation().getName(), patientLocation().getPatientId(), patientLocation().getUserName(),
                                             binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                             "yourself", location.getLatitude(), location.getLongitude()
                                     );
@@ -122,7 +122,7 @@ public class YourselfActivity extends AppCompatActivity {
             Log.i("abdo", "onSuccess: " + mLastLocation.getLatitude());
             DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
             db.insertNewOrder(
-                    patientLocation().getName(), patientLocation().getPatientId(),
+                    patientLocation().getName(), patientLocation().getPatientId(), patientLocation().getUserName(),
                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                     "yourself", mLastLocation.getLatitude(), mLastLocation.getLongitude());
             Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
@@ -156,7 +156,7 @@ public class YourselfActivity extends AppCompatActivity {
                                 Log.i("abdo", "onSuccess: " + location.getLatitude());
                                 DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
                                 db.insertNewOrder(
-                                        patientLocation().getName(), patientLocation().getPatientId(),
+                                        patientLocation().getName(), patientLocation().getPatientId(), patientLocation().getUserName(),
                                         binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
                                         "yourself", location.getLatitude(), location.getLongitude());
                                 Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
@@ -194,6 +194,7 @@ public class YourselfActivity extends AppCompatActivity {
                     new PatientLocation(
                             cursor.getString(8),
                             "",
+                            userId,
                             cursor.getString(1),
                             "",
                             cursor.getString(6),

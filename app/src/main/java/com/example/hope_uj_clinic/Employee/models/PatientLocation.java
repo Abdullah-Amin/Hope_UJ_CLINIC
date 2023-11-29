@@ -10,14 +10,16 @@ public class PatientLocation implements Parcelable {
     private String patientId;
     private String orderId;
     private String personType;
+    private String userName;
     private String name;
     private String note;
     private String latitude;
     private String longitude;
 
-    public PatientLocation(String patientId, String orderId, String name, String note, String personType, String latitude, String longitude) {
+    public PatientLocation(String patientId, String orderId, String userName, String name, String note, String personType, String latitude, String longitude) {
         this.patientId = patientId;
         this.orderId = orderId;
+        this.userName = userName;
         this.name = name;
         this.note = note;
         this.personType = personType;
@@ -28,6 +30,7 @@ public class PatientLocation implements Parcelable {
     protected PatientLocation(Parcel in) {
         patientId = in.readString();
         orderId = in.readString();
+        userName = in.readString();
         name = in.readString();
         note = in.readString();
         personType = in.readString();
@@ -48,6 +51,14 @@ public class PatientLocation implements Parcelable {
             return new PatientLocation[size];
         }
     };
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getOrderId() {
         return orderId;
@@ -124,6 +135,7 @@ public class PatientLocation implements Parcelable {
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeString(patientId);
         parcel.writeString(orderId);
+        parcel.writeString(userName);
         parcel.writeString(name);
         parcel.writeString(note);
         parcel.writeString(personType);

@@ -36,6 +36,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         }
 
         binding.patientID.setText(location.getPatientId());
+        binding.mrn.setText("MRN - ".concat(location.getUserName().split("@")[0]));
         binding.idEt.setText(location.getPatientId());
         binding.patientName.setText(location.getName());
         binding.notesEt.setText(location.getNote());

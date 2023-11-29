@@ -47,7 +47,6 @@ public class OrderHistoryActivity extends AppCompatActivity {
         DatabaseHelper db = new DatabaseHelper(OrderHistoryActivity.this);
 
         Cursor cursor = db.getOrders();
-//        Cursor cursorYourself = db.getYourselfOrders();
 
         if (cursor.getCount() == 0){
             Toast.makeText(this, "There is no data", Toast.LENGTH_SHORT).show();
@@ -55,13 +54,14 @@ public class OrderHistoryActivity extends AppCompatActivity {
             while (cursor.moveToNext()){
                 Log.i("abdo", "getDataFromDatabase: "+ cursor.getString(0) + cursor.getString(3));
                 locations.add(new PatientLocation(
-                        cursor.getString(2),
-                        cursor.getString(0),
-                        cursor.getString(1),
                         cursor.getString(3),
+                        cursor.getString(0),
+                        cursor.getString(2),
+                        cursor.getString(1),
                         cursor.getString(4),
                         cursor.getString(5),
-                        cursor.getString(6)));
+                        cursor.getString(6),
+                        cursor.getString(7)));
             }
         }
         return locations;

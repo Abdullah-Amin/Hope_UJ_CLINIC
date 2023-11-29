@@ -37,6 +37,8 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         holder.binding.orderId.setText(patientLocation.get(position).getOrderId());
+        String userName = patientLocation.get(position).getUserName().split("@")[0];
+        holder.binding.mrn.setText("MRN - ".concat(userName));
         if (userType.equals("employee")) {
             Log.i("abdo", "onBindViewHolder: " + patientLocation.get(position).getPersonType());
             if (patientLocation.get(position).getPersonType().equals("yourself")) {
