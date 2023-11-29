@@ -49,6 +49,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
         }
 
         holder.itemView.setOnClickListener(view -> {
+            patientLocation.get(position).setPersonType("himself");
             orderDetailsI.getOrder(patientLocation.get(position));
         });
     }

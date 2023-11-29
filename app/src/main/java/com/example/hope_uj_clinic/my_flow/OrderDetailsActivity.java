@@ -28,7 +28,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         location = getIntent().getParcelableExtra("patient");
 
-        if (location.getPersonType().equals("yourself")){
+        if (location.getPersonType().equals("yourself") || location.getPersonType().equals("himself")){
             binding.nameLayout.setVisibility(View.GONE);
             binding.idLayout.setVisibility(View.GONE);
             binding.nameTV.setVisibility(View.GONE);
