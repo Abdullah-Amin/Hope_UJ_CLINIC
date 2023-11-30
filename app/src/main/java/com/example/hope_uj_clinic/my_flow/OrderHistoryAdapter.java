@@ -54,17 +54,17 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             Log.i("abdo", "onBindViewHolder: " + patientLocation.get(position).getPersonType());
             if (patientLocation.get(position).getPersonType().equals("yourself")) {
                 holder.binding.orderStatus.setText("himself");
+                patientLocation.get(position).setPersonType("himself");
             }else {
                 holder.binding.orderStatus.setText(patientLocation.get(position).getPersonType());
             }
         }else {
             holder.binding.orderStatus.setText(patientLocation.get(position).getPersonType());
+//            patientLocation.get(position).setPersonType("yourself");
         }
 
-        int finalPosition = position;
         holder.itemView.setOnClickListener(view -> {
-            patientLocation.get(finalPosition).setPersonType("himself");
-            orderDetailsI.getOrder(patientLocation.get(finalPosition));
+            orderDetailsI.getOrder(patientLocation.get(position));
         });
     }
 
