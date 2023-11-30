@@ -8,6 +8,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.location.Location;
@@ -178,8 +179,9 @@ public class YourselfActivity extends AppCompatActivity {
         }
     }
     public PatientLocation patientLocation(){
-
-//        userId = userId.split(".")[0];
+        
+        SharedPreferences preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
+        String userId = preferences.getString("userId", "");
 
         DatabaseHelper db = new DatabaseHelper(YourselfActivity.this);
         Cursor cursor = db.getUser(userId);

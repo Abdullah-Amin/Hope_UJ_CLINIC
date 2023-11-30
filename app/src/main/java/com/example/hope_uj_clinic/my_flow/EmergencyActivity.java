@@ -2,7 +2,9 @@ package com.example.hope_uj_clinic.my_flow;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,11 +22,18 @@ public class EmergencyActivity extends AppCompatActivity {
 
         userType = getIntent().getStringExtra("userType");
         userId = getIntent().getStringExtra("user_id");
+
+        SharedPreferences preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("userId", userId);
+        editor.putString("userType", userType);
+        editor.apply();
     }
 
     public void newOrder(View view) {
         if (userType.equals("employee")){
             Intent intent = new Intent(EmergencyActivity.this, OrderHistoryActivity.class);
+            intent.putExtra("userType", userType);
             intent.putExtra("userType", userType);
             Log.i("abdo", "orderHistory: " + userType);
             startActivity(intent);

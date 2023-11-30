@@ -29,7 +29,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     public static final String TABLE_DOCTOR = "Doctor";
     public static final String TABLE_CLINIC = "Clinic";
     public static final String TABLE_VITAL_SIGNS = "vital_signs";
-    public static final String ORDERS = "others_orders";
+    public static final String ORDERS = "orders";
 //    public static final String YOURSELF_ORDERS = "yourself_orders";
 
     // Column names

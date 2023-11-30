@@ -2,7 +2,9 @@ package com.example.hope_uj_clinic.my_flow;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,11 +15,13 @@ import com.example.hope_uj_clinic.Employee.models.PatientLocation;
 import com.example.hope_uj_clinic.databinding.ActivityOrderHistoryBinding;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class OrderHistoryActivity extends AppCompatActivity {
 
     ActivityOrderHistoryBinding binding;
     ArrayList<PatientLocation> locations = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +33,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
         String userType = getIntent().getStringExtra("userType");
         Log.i("abdo", "orderHistory: before adapter " + userType);
 
-        if (userType.equals("employee")){
+        if (userType.equals("employee")) {
             binding.head.setText("New Order");
         }
 
@@ -43,25 +47,43 @@ public class OrderHistoryActivity extends AppCompatActivity {
         }));
     }
 
-    public ArrayList<PatientLocation> getDataFromDatabase(){
+    public ArrayList<PatientLocation> getDataFromDatabase() {
         DatabaseHelper db = new DatabaseHelper(OrderHistoryActivity.this);
 
         Cursor cursor = db.getOrders();
 
-        if (cursor.getCount() == 0){
+        if (cursor.getCount() == 0) {
             Toast.makeText(this, "There is no data", Toast.LENGTH_SHORT).show();
-        }else{
-            while (cursor.moveToNext()){
-                Log.i("abdo", "getDataFromDatabase: "+ cursor.getString(0) + cursor.getString(3));
-                locations.add(new PatientLocation(
-                        cursor.getString(3),
-                        cursor.getString(0),
-                        cursor.getString(2),
-                        cursor.getString(1),
-                        cursor.getString(4),
-                        cursor.getString(5),
-                        cursor.getString(6),
-                        cursor.getString(7)));
+        } else {
+            while (cursor.moveToNext()) {
+                Log.i("abdo", "getDataFromDatabase: " + cursor.getString(0) + cursor.getString(3));
+                SharedPreferences preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
+                String userId = preferences.getString("userId", "");
+                String userType = preferences.getString("userType", "");
+
+                if (!userType.equals("employee")) {
+                    if (Objects.equals(cursor.getString(2), userId)) {
+                        locations.add(new PatientLocation(
+                                cursor.getString(3),
+                                cursor.getString(0),
+                                cursor.getString(2),
+                                cursor.getString(1),
+                                cursor.getString(4),
+                                cursor.getString(5),
+                                cursor.getString(6),
+                                cursor.getString(7)));
+                    }
+                }else {
+                    locations.add(new PatientLocation(
+                            cursor.getString(3),
+                            cursor.getString(0),
+                            cursor.getString(2),
+                            cursor.getString(1),
+                            cursor.getString(4),
+                            cursor.getString(5),
+                            cursor.getString(6),
+                            cursor.getString(7)));
+                }
             }
         }
         return locations;

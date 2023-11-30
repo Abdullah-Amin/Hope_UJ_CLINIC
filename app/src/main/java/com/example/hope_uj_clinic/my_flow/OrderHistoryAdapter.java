@@ -1,5 +1,7 @@
 package com.example.hope_uj_clinic.my_flow;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import com.example.hope_uj_clinic.Employee.models.PatientLocation;
 import com.example.hope_uj_clinic.databinding.ItemOrderBinding;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapter.Holder> {
 
@@ -36,6 +39,14 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
+//        SharedPreferences preferences = holder.itemView.getContext().getSharedPreferences("userId", Context.MODE_PRIVATE);
+//        String userId = preferences.getString("userId", "");
+//
+//        if (!Objects.equals(patientLocation.get(position).getUserName(), userId)){
+//            patientLocation.remove(position);
+//            notifyItemInserted(position);
+//        }
+
         holder.binding.orderId.setText(patientLocation.get(position).getOrderId());
         String userName = patientLocation.get(position).getUserName().split("@")[0];
         holder.binding.mrn.setText("MRN - ".concat(userName));
@@ -50,9 +61,10 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             holder.binding.orderStatus.setText(patientLocation.get(position).getPersonType());
         }
 
+        int finalPosition = position;
         holder.itemView.setOnClickListener(view -> {
-            patientLocation.get(position).setPersonType("himself");
-            orderDetailsI.getOrder(patientLocation.get(position));
+            patientLocation.get(finalPosition).setPersonType("himself");
+            orderDetailsI.getOrder(patientLocation.get(finalPosition));
         });
     }
 
