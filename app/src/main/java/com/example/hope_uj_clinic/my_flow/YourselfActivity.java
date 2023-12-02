@@ -74,7 +74,7 @@ public class YourselfActivity extends AppCompatActivity {
                                     db.insertNewOrder(
                                             patientLocation().getName(), patientLocation().getPatientId(), patientLocation().getUserName(),
                                             binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
-                                            "yourself", location.getLatitude(), location.getLongitude()
+                                            "yourself", "In Progress", location.getLatitude(), location.getLongitude()
                                     );
                                     Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
                                     isDialogVisible = false;
@@ -125,7 +125,7 @@ public class YourselfActivity extends AppCompatActivity {
             db.insertNewOrder(
                     patientLocation().getName(), patientLocation().getPatientId(), patientLocation().getUserName(),
                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
-                    "yourself", mLastLocation.getLatitude(), mLastLocation.getLongitude());
+                    "yourself", "In Progress", mLastLocation.getLatitude(), mLastLocation.getLongitude());
             Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
             isDialogVisible = false;
             if (!isDialogVisible){
@@ -159,7 +159,7 @@ public class YourselfActivity extends AppCompatActivity {
                                 db.insertNewOrder(
                                         patientLocation().getName(), patientLocation().getPatientId(), patientLocation().getUserName(),
                                         binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
-                                        "yourself", location.getLatitude(), location.getLongitude());
+                                        "yourself", "In Progress", location.getLatitude(), location.getLongitude());
                                 Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
                                 isDialogVisible = false;
                                 if (!isDialogVisible){
@@ -200,6 +200,7 @@ public class YourselfActivity extends AppCompatActivity {
                             cursor.getString(1),
                             "",
                             cursor.getString(6),
+                            "",
                             "", "");
         }
         return patientLocation;

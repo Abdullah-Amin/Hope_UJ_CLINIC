@@ -77,7 +77,7 @@ public class OthersActivity extends AppCompatActivity {
                                                     binding.idEt.getText().toString().isEmpty() ? " " : binding.idEt.getText().toString(),
                                                     patientLocation().getUserName(),
                                                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
-                                                    "others", location.getLatitude(), location.getLongitude()
+                                                    "others", "In Progress", location.getLatitude(), location.getLongitude()
                                             );
                                             Toast.makeText(OthersActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
                                             isDialogVisible = true;
@@ -132,7 +132,7 @@ public class OthersActivity extends AppCompatActivity {
                     binding.idEt.getText().toString().isEmpty() ? " " : binding.idEt.getText().toString(),
                     patientLocation().getUserName(),
                     binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
-                    "others", mLastLocation.getLatitude(), mLastLocation.getLongitude());
+                    "others", "In Progress", mLastLocation.getLatitude(), mLastLocation.getLongitude());
             Toast.makeText(OthersActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
             isDialogVisible = false;
             if (!isDialogVisible){
@@ -168,7 +168,7 @@ public class OthersActivity extends AppCompatActivity {
                                         binding.idEt.getText().toString().isEmpty() ? " " : binding.idEt.getText().toString(),
                                         patientLocation().getUserName(),
                                         binding.notesEt.getText().toString().isEmpty() ? " " : binding.notesEt.getText().toString(),
-                                        "others", location.getLatitude(), location.getLongitude()
+                                        "others", "In Progress", location.getLatitude(), location.getLongitude()
                                 );
                                 Toast.makeText(OthersActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
                                 isDialogVisible = false;
@@ -209,6 +209,7 @@ public class OthersActivity extends AppCompatActivity {
                             cursor.getString(1),
                             "",
                             cursor.getString(6),
+                            "",
                             "", "");
         }
         return patientLocation;

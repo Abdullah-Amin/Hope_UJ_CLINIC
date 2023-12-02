@@ -14,7 +14,7 @@
         android:icon="@drawable/startpage"
         android:label="Uj_Clinic"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/Theme.Hope_Uj_Clinic"
         tools:targetApi="31">
 

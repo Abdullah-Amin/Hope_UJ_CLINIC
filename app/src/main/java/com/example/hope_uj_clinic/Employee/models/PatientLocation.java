@@ -13,16 +13,20 @@ public class PatientLocation implements Parcelable {
     private String userName;
     private String name;
     private String note;
+    private String orderState;
     private String latitude;
     private String longitude;
 
-    public PatientLocation(String patientId, String orderId, String userName, String name, String note, String personType, String latitude, String longitude) {
+    public PatientLocation(String patientId, String orderId, String userName,
+                           String name, String note, String personType,
+                           String orderState, String latitude, String longitude) {
         this.patientId = patientId;
         this.orderId = orderId;
         this.userName = userName;
         this.name = name;
         this.note = note;
         this.personType = personType;
+        this.orderState = orderState;
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -34,6 +38,7 @@ public class PatientLocation implements Parcelable {
         name = in.readString();
         note = in.readString();
         personType = in.readString();
+        orderState = in.readString();
         latitude = in.readString();
         longitude = in.readString();
     }
@@ -51,6 +56,14 @@ public class PatientLocation implements Parcelable {
             return new PatientLocation[size];
         }
     };
+
+    public String getOrderState() {
+        return orderState;
+    }
+
+    public void setOrderState(String orderState) {
+        this.orderState = orderState;
+    }
 
     public String getUserName() {
         return userName;
@@ -117,16 +130,6 @@ public class PatientLocation implements Parcelable {
     }
 
     @Override
-    public String toString() {
-        return "PatientLocation{" +
-                "patientId='" + patientId + '\'' +
-                ", personType='" + personType + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
-    }
-
-    @Override
     public int describeContents() {
         return 0;
     }
@@ -139,7 +142,23 @@ public class PatientLocation implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(note);
         parcel.writeString(personType);
+        parcel.writeString(orderState);
         parcel.writeString(latitude);
         parcel.writeString(longitude);
+    }
+
+    @Override
+    public String toString() {
+        return "PatientLocation{" +
+                "patientId='" + patientId + '\'' +
+                ", orderId='" + orderId + '\'' +
+                ", personType='" + personType + '\'' +
+                ", userName='" + userName + '\'' +
+                ", name='" + name + '\'' +
+                ", note='" + note + '\'' +
+                ", orderState='" + orderState + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                '}';
     }
 }

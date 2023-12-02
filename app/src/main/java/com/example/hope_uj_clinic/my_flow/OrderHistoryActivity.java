@@ -31,11 +31,41 @@ public class OrderHistoryActivity extends AppCompatActivity {
         locations = new ArrayList<>();
 
         String userType = getIntent().getStringExtra("userType");
+        String orderState = getIntent().getStringExtra("orderState");
         Log.i("abdo", "orderHistory: before adapter " + userType);
 
         if (userType.equals("employee")) {
             binding.head.setText("New Order");
+
+            if (orderState.equals("new")){
+                binding.orderRecycler.setAdapter(new OrderHistoryAdapter(getNewOrders(), userType, new OrderDetailsI() {
+                    @Override
+                    public void getOrder(PatientLocation patientLocation) {
+                        Intent intent = new Intent(OrderHistoryActivity.this, OrderDetailsActivity.class);
+                        intent.putExtra("patient", patientLocation);
+                        startActivity(intent);
+                    }
+                }));
+            }else {
+                binding.orderRecycler.setAdapter(new OrderHistoryAdapter(getCompletedOrders(), userType, new OrderDetailsI() {
+                    @Override
+                    public void getOrder(PatientLocation patientLocation) {
+                        Intent intent = new Intent(OrderHistoryActivity.this, OrderDetailsActivity.class);
+                        intent.putExtra("patient", patientLocation);
+                        startActivity(intent);
+                    }
+                }));
+            }
+            binding.orderRecycler.setAdapter(new OrderHistoryAdapter(getDataFromDatabase(), userType, new OrderDetailsI() {
+                @Override
+                public void getOrder(PatientLocation patientLocation) {
+                    Intent intent = new Intent(OrderHistoryActivity.this, OrderDetailsActivity.class);
+                    intent.putExtra("patient", patientLocation);
+                    startActivity(intent);
+                }
+            }));
         }
+
 
         binding.orderRecycler.setAdapter(new OrderHistoryAdapter(getDataFromDatabase(), userType, new OrderDetailsI() {
             @Override
@@ -71,9 +101,10 @@ public class OrderHistoryActivity extends AppCompatActivity {
                                 cursor.getString(4),
                                 cursor.getString(5),
                                 cursor.getString(6),
-                                cursor.getString(7)));
+                                cursor.getString(7),
+                                cursor.getString(8)));
                     }
-                }else {
+                } else {
                     locations.add(new PatientLocation(
                             cursor.getString(3),
                             cursor.getString(0),
@@ -82,7 +113,68 @@ public class OrderHistoryActivity extends AppCompatActivity {
                             cursor.getString(4),
                             cursor.getString(5),
                             cursor.getString(6),
-                            cursor.getString(7)));
+                            cursor.getString(7),
+                            cursor.getString(8)));
+                }
+            }
+        }
+        return locations;
+    }
+
+    public ArrayList<PatientLocation> getNewOrders() {
+        DatabaseHelper db = new DatabaseHelper(OrderHistoryActivity.this);
+
+        Cursor cursor = db.getNewOrdersForEmployee();
+
+        if (cursor.getCount() == 0) {
+            Toast.makeText(this, "There is no data", Toast.LENGTH_SHORT).show();
+        } else {
+            while (cursor.moveToNext()) {
+                Log.i("abdo", "getDataFromDatabase: " + cursor.getString(0) + cursor.getString(3));
+                SharedPreferences preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
+                String userId = preferences.getString("userId", "");
+
+                if (Objects.equals(cursor.getString(2), userId)) {
+                    locations.add(new PatientLocation(
+                            cursor.getString(3),
+                            cursor.getString(0),
+                            cursor.getString(2),
+                            cursor.getString(1),
+                            cursor.getString(4),
+                            cursor.getString(5),
+                            cursor.getString(6),
+                            cursor.getString(7),
+                            cursor.getString(8)));
+                }
+            }
+        }
+        return locations;
+    }
+
+    public ArrayList<PatientLocation> getCompletedOrders() {
+        DatabaseHelper db = new DatabaseHelper(OrderHistoryActivity.this);
+
+        Cursor cursor = db.getCompletedOrdersForEmployee();
+
+        if (cursor.getCount() == 0) {
+            Toast.makeText(this, "There is no data", Toast.LENGTH_SHORT).show();
+        } else {
+            while (cursor.moveToNext()) {
+                Log.i("abdo", "getDataFromDatabase: " + cursor.getString(0) + cursor.getString(3));
+                SharedPreferences preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
+                String userId = preferences.getString("userId", "");
+
+                if (Objects.equals(cursor.getString(2), userId)) {
+                    locations.add(new PatientLocation(
+                            cursor.getString(3),
+                            cursor.getString(0),
+                            cursor.getString(2),
+                            cursor.getString(1),
+                            cursor.getString(4),
+                            cursor.getString(5),
+                            cursor.getString(6),
+                            cursor.getString(7),
+                            cursor.getString(8)));
                 }
             }
         }

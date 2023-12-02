@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.hope_uj_clinic.DatabaseHelper;
 import com.example.hope_uj_clinic.Employee.models.PatientLocation;
 import com.example.hope_uj_clinic.R;
 import com.example.hope_uj_clinic.databinding.ActivityOredrDeatailsBinding;
@@ -33,6 +34,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
             binding.idLayout.setVisibility(View.GONE);
             binding.nameTV.setVisibility(View.GONE);
             binding.idTV.setVisibility(View.GONE);
+            binding.completeBtn.setVisibility(View.GONE);
         }
 
         binding.patientID.setText(location.getPatientId());
@@ -41,7 +43,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
         binding.patientName.setText(location.getName());
         binding.notesEt.setText(location.getNote());
         binding.nameEt.setText(location.getName());
-        binding.personType.setText(location.getPersonType());
+        binding.orderFor.setText("Order For: " + location.getPersonType());
+        binding.orderStatus.setText("Order Status: " + location.getOrderState());
 
         binding.idEt.setEnabled(false);
         binding.nameEt.setEnabled(false);
@@ -61,5 +64,12 @@ public class OrderDetailsActivity extends AppCompatActivity {
         };
         supportMapFragment.getMapAsync(callback);
         fm.beginTransaction().replace(binding.mapFrame.getId(), supportMapFragment).commit();
+    }
+
+    public void completed(View view) {
+        DatabaseHelper db = new DatabaseHelper(OrderDetailsActivity.this);
+        db.updateOrderWith(location.getUserName(), "Completed");
+//        location.setOrderState("Completed");
+//        OrderDetailsActivity.this.recreate();
     }
 }

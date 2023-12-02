@@ -54,7 +54,20 @@
             android:id="@+id/orderStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Order Status"
+            android:text="Order For:"
+            android:textColor="#043E9F"
+            android:textStyle="bold"
+            android:textSize="@dimen/_18sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginVertical="@dimen/_15sdp"
+            app:layout_constraintStart_toEndOf="@id/view"
+            app:layout_constraintTop_toBottomOf="@id/mrn"/>
+
+        <TextView
+            android:id="@+id/orderFor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Status:"
             android:textColor="#043E9F"
             android:textStyle="bold"
             android:textSize="@dimen/_18sdp"
@@ -62,7 +75,7 @@
             android:layout_marginVertical="@dimen/_15sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/view"
-            app:layout_constraintTop_toBottomOf="@id/mrn"/>
+            app:layout_constraintTop_toBottomOf="@id/orderStatus"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

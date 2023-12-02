@@ -34,7 +34,7 @@ public class EmergencyActivity extends AppCompatActivity {
         if (userType.equals("employee")){
             Intent intent = new Intent(EmergencyActivity.this, OrderHistoryActivity.class);
             intent.putExtra("userType", userType);
-            intent.putExtra("userType", userType);
+            intent.putExtra("orderState", "new");
             Log.i("abdo", "orderHistory: " + userType);
             startActivity(intent);
             return;
@@ -48,6 +48,7 @@ public class EmergencyActivity extends AppCompatActivity {
     public void orderHistory(View view) {
         Intent intent = new Intent(EmergencyActivity.this, OrderHistoryActivity.class);
         intent.putExtra("userType", userType);
+        intent.putExtra("orderState", "old");
         Log.i("abdo", "orderHistory: " + userType);
         intent.putExtra("user_id", userId);
         startActivity(intent);

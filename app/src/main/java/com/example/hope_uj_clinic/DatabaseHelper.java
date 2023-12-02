@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.hope_uj_clinic.Patient.DataBooking;
 import com.example.hope_uj_clinic.Patient.DataClinics;
@@ -49,6 +50,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     public static final String NAME = "others_name";
     public static final String USER_NAME = "user_name";
     public static final String NOTE = "others_note";
+    public static final String ORDER_STATUS = "order_status";
     private static final String PERSON_TYPE  = "person_type";
     public static final String LAT = "others_lat";
     public static final String LNG = "others_lng";
@@ -80,9 +82,13 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     public static final String COLUMN_VITAL_TIME = "time";
     public static final String COLUMN_VITAL_USER_NAME = "user_name";
 
+    private Context context;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
+        this.context = context;
+
         initializeDatabase();
     }
 
@@ -156,23 +162,16 @@ public class DatabaseHelper extends SQLiteAssetHelper {
                 + USER_ID + " TEXT ,"
                 + NOTE + " TEXT ,"
                 + PERSON_TYPE + " TEXT ,"
+                + ORDER_STATUS + " TEXT ,"
                 + LAT + " REAL NOT NULL,"
                 + LNG + " REAL NOT NULL"
                 + ")");
-
-//        db.execSQL("CREATE TABLE IF NOT EXISTS " + YOURSELF_ORDERS + " ("
-//                + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-//                + YOURSELF_NOTE + " TEXT ,"
-//                + PERSON_TYPE + " TEXT ,"
-//                + YOURSELF_LAT + " REAL NOT NULL,"
-//                + YOURSELF_LNG + " REAL NOT NULL"
-//                + ")");
 
 //        db.close();
     }
 
     public void insertNewOrder(String name, String userId, String userName, String note, String personType,
-                                     double lat, double lng) {
+                               String orderStatus,  double lat, double lng) {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -181,6 +180,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         values.put(USER_NAME, userName);
         values.put(NOTE, note);
         values.put(PERSON_TYPE, personType);
+        values.put(ORDER_STATUS, orderStatus);
         values.put(LAT, lat);
         values.put(LNG, lng);
 
@@ -189,23 +189,30 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 //        db.close();
     }
 
-//    public void insertNewYourselfOrder(String yourselfNote, String personType,
-//                                       double yourselfLat, double yourselfLng) {
-//        SQLiteDatabase db = getWritableDatabase();
-//
-//        ContentValues values = new ContentValues();
-//        values.put(YOURSELF_NOTE, yourselfNote);
-//        values.put(PERSON_TYPE, personType);
-//        values.put(YOURSELF_LAT, yourselfLat);
-//        values.put(YOURSELF_LNG, yourselfLng);
-//
-//        db.insert(YOURSELF_ORDERS, null, values);
-//
-////        db.close();
-//    }
-
     public Cursor getOrders() {
         String query = "SELECT * FROM " + ORDERS;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    public Cursor getNewOrdersForEmployee() {
+        String query = "SELECT * FROM " + ORDERS + " WHERE " + ORDER_STATUS + " = " + "'In Progress'";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    public Cursor getCompletedOrdersForEmployee() {
+        String query = "SELECT * FROM " + ORDERS + " WHERE " + ORDER_STATUS + " = " + "'Completed'";
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
@@ -230,6 +237,28 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 //            Log.i("abdo", "getUser: "+ cursor.getString(0));
 //        }
         return cursor;
+    }
+
+    public void updateOrderWith(String userId, String newOrderState){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(ORDER_STATUS, newOrderState);
+
+        String whereClause = USER_ID + " = ?";
+        String[] whereArgs = {String.valueOf(userId)};
+
+        try {
+            int rowsUpdated = db.update(ORDERS, values, whereClause, whereArgs);
+
+            if (rowsUpdated > 0) {
+//                Toast.makeText(context, "O", Toast.LENGTH_SHORT).show();
+            } else {
+                // No rows were updated, check your condition
+            }
+        } finally {
+            db.close(); // Close the database connection
+        }
     }
 
 //    public Cursor getYourselfOrders() {
