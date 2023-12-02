@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +17,12 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.Hope_Uj_Clinic"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ConditionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConditionClassifierActivity"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -32,8 +37,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDdYSep7ZR53CGJFh3a4AhVApxPU6no0x8" />
-
-
 
         <activity
             android:name=".my_flow.OrderDetailsActivity"

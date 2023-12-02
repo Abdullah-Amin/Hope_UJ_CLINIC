@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".my_flow.ConditionClassifierActivity">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:src="@drawable/backhome"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Condition\nClassifier"
+        android:textSize="@dimen/_35sdp"
+        android:textColor="#043E9F"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@id/image"
+        app:layout_constraintBottom_toBottomOf="@id/image"
+        app:layout_constraintStart_toStartOf="@id/image"
+        app:layout_constraintEnd_toEndOf="@id/image"
+        tools:ignore="SpUsage" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/HRTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HR"
+                android:textColor="#09347A"
+                android:textStyle="bold"
+                android:textSize="@dimen/_18sdp"
+                android:drawableStart="@drawable/person"
+                android:drawableTint="@color/black"
+                android:paddingStart="@dimen/_5sdp"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/HRLayout"
+                android:layout_width="@dimen/_330sdp"
+                android:layout_height="@dimen/_50sdp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:boxCornerRadiusTopStart="@dimen/_15sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_15sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_15sdp"
+                app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_28sdp"
+                app:layout_constraintTop_toBottomOf="@id/HRTxt"
+                app:layout_constraintStart_toStartOf="@id/HRTxt">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/HREt"
+                    android:hint="Heart Rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#B9E1F3"
+                    android:background="@drawable/et_corners"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/respTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RESP"
+                android:textColor="#09347A"
+                android:textStyle="bold"
+                android:textSize="@dimen/_18sdp"
+                android:drawableStart="@drawable/person"
+                android:drawableTint="@color/black"
+                android:paddingStart="@dimen/_5sdp"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintTop_toBottomOf="@id/HRLayout"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/respLayout"
+                android:layout_width="@dimen/_330sdp"
+                android:layout_height="@dimen/_50sdp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:boxCornerRadiusTopStart="@dimen/_15sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_15sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_15sdp"
+                app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_28sdp"
+                app:layout_constraintTop_toBottomOf="@id/respTxt"
+                app:layout_constraintStart_toStartOf="@id/respTxt">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/respEt"
+                    android:hint="Respiration Rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#B9E1F3"
+                    android:background="@drawable/et_corners"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/oxygenTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SpO2"
+                android:textColor="#09347A"
+                android:textStyle="bold"
+                android:textSize="@dimen/_18sdp"
+                android:drawableStart="@drawable/person"
+                android:drawableTint="@color/black"
+                android:paddingStart="@dimen/_5sdp"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintTop_toBottomOf="@id/respLayout"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/oxygenLayout"
+                android:layout_width="@dimen/_330sdp"
+                android:layout_height="@dimen/_50sdp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:boxCornerRadiusTopStart="@dimen/_15sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_15sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_15sdp"
+                app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_28sdp"
+                app:layout_constraintTop_toBottomOf="@id/oxygenTxt"
+                app:layout_constraintStart_toStartOf="@id/oxygenTxt">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/oxygenEt"
+                    android:hint="Oxygen Saturation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#B9E1F3"
+                    android:background="@drawable/et_corners"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tempTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TEMP"
+                android:textColor="#09347A"
+                android:textStyle="bold"
+                android:textSize="@dimen/_18sdp"
+                android:drawableStart="@drawable/person"
+                android:drawableTint="@color/black"
+                android:paddingStart="@dimen/_5sdp"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintTop_toBottomOf="@id/oxygenLayout"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tempLayout"
+                android:layout_width="@dimen/_330sdp"
+                android:layout_height="@dimen/_50sdp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:boxCornerRadiusTopStart="@dimen/_15sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_15sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_15sdp"
+                app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_28sdp"
+                app:layout_constraintTop_toBottomOf="@id/tempTxt"
+                app:layout_constraintStart_toStartOf="@id/tempTxt">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tempEt"
+                    android:hint="Temperature"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#B9E1F3"
+                    android:background="@drawable/et_corners"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/classifyBtn"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:onClick="classify"
+                android:text="Classifying"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_23sdp"
+                app:cornerRadius="@dimen/_10sdp"
+                android:backgroundTint="#09347A"
+                android:layout_marginTop="@dimen/_60sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                app:layout_constraintTop_toBottomOf="@id/tempLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
