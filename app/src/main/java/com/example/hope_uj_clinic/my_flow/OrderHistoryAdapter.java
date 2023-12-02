@@ -39,27 +39,21 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-//        SharedPreferences preferences = holder.itemView.getContext().getSharedPreferences("userId", Context.MODE_PRIVATE);
-//        String userId = preferences.getString("userId", "");
-//
-//        if (!Objects.equals(patientLocation.get(position).getUserName(), userId)){
-//            patientLocation.remove(position);
-//            notifyItemInserted(position);
-//        }
 
         holder.binding.orderId.setText(patientLocation.get(position).getOrderId());
         String userName = patientLocation.get(position).getUserName().split("@")[0];
         holder.binding.mrn.setText("MRN - ".concat(userName));
+        holder.binding.orderStatus.setText("Order Status: ".concat(patientLocation.get(position).getOrderState()));
         if (userType.equals("employee")) {
             Log.i("abdo", "onBindViewHolder: " + patientLocation.get(position).getPersonType());
             if (patientLocation.get(position).getPersonType().equals("yourself")) {
-                holder.binding.orderStatus.setText("himself");
+                holder.binding.orderFor.setText("Order For: himself");
                 patientLocation.get(position).setPersonType("himself");
             }else {
-                holder.binding.orderStatus.setText(patientLocation.get(position).getPersonType());
+                holder.binding.orderFor.setText("Order For: ".concat(patientLocation.get(position).getPersonType()));
             }
         }else {
-            holder.binding.orderStatus.setText(patientLocation.get(position).getPersonType());
+            holder.binding.orderFor.setText("Order For: ".concat(patientLocation.get(position).getPersonType()));
 //            patientLocation.get(position).setPersonType("yourself");
         }
 
