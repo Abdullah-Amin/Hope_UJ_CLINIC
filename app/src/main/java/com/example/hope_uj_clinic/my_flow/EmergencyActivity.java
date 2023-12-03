@@ -37,12 +37,14 @@ public class EmergencyActivity extends AppCompatActivity {
             intent.putExtra("orderState", "new");
             Log.i("abdo", "orderHistory: " + userType);
             startActivity(intent);
+            EmergencyActivity.this.finish();
             return;
         }
         Intent intent = new Intent(EmergencyActivity.this, NewOrderActivity.class);
         intent.putExtra("userType", userType);
         intent.putExtra("user_id", userId);
         startActivity(intent);
+        EmergencyActivity.this.finish();
     }
 
     public void orderHistory(View view) {
@@ -52,5 +54,6 @@ public class EmergencyActivity extends AppCompatActivity {
         Log.i("abdo", "orderHistory: " + userType);
         intent.putExtra("user_id", userId);
         startActivity(intent);
+        EmergencyActivity.this.finish();
     }
 }

@@ -32,6 +32,7 @@ public class NewOrderActivity extends AppCompatActivity {
         Log.i("abdo", "yourself: "+ userId);
         intent.putExtra("user_id", userId);
         startActivity(intent);
+        NewOrderActivity.this.finish();
     }
 
     public void others(View view) {
@@ -39,5 +40,6 @@ public class NewOrderActivity extends AppCompatActivity {
         intent.putExtra("userType", userType);
         intent.putExtra("user_id", userId);
         startActivity(intent);
+        NewOrderActivity.this.finish();
     }
 }

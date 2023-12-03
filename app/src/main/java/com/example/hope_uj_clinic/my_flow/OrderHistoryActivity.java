@@ -35,9 +35,10 @@ public class OrderHistoryActivity extends AppCompatActivity {
         Log.i("abdo", "orderHistory: before adapter " + userType);
 
         if (userType.equals("employee")) {
-            binding.head.setText("New Order");
+
 
             if (orderState.equals("new")){
+                binding.head.setText("New Orders");
                 binding.orderRecycler.setAdapter(new OrderHistoryAdapter(getNewOrders(), userType, new OrderDetailsI() {
                     @Override
                     public void getOrder(PatientLocation patientLocation) {
@@ -45,10 +46,11 @@ public class OrderHistoryActivity extends AppCompatActivity {
                         intent.putExtra("user", "employee");
                         intent.putExtra("patient", patientLocation);
                         startActivity(intent);
-                        finish();
+                        OrderHistoryActivity.this.finish();
                     }
                 }));
             }else {
+
                 binding.orderRecycler.setAdapter(new OrderHistoryAdapter(getCompletedOrders(), userType, new OrderDetailsI() {
                     @Override
                     public void getOrder(PatientLocation patientLocation) {
@@ -56,7 +58,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
                         intent.putExtra("user", "employee");
                         intent.putExtra("patient", patientLocation);
                         startActivity(intent);
-                        finish();
+                        OrderHistoryActivity.this.finish();
                     }
                 }));
             }
@@ -78,7 +80,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
                     intent.putExtra("user", "user");
                     intent.putExtra("patient", patientLocation);
                     startActivity(intent);
-                    finish();
+                    OrderHistoryActivity.this.finish();
                 }
             }));
         }

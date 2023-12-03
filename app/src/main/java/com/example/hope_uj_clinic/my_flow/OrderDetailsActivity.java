@@ -62,9 +62,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 binding.idLayout.setVisibility(View.GONE);
                 binding.nameTV.setVisibility(View.GONE);
                 binding.idTV.setVisibility(View.GONE);
-                binding.completeBtn.setVisibility(View.GONE);
             }
 
+            binding.completeBtn.setVisibility(View.GONE);
             binding.patientID.setText(location.getPatientId());
             binding.mrn.setText("MRN - ".concat(location.getUserName().split("@")[0]));
             binding.idEt.setText(location.getPatientId());
@@ -103,7 +103,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Toast.makeText(this, "Order set completed", Toast.LENGTH_LONG).show();
 
         location.setOrderState("Completed");
-        OrderDetailsActivity.this.recreate();
+        OrderDetailsActivity.this.finish();
     }
 
     @Override

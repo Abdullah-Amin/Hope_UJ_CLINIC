@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Toast;
 import com.example.hope_uj_clinic.DatabaseHelper;
 import com.example.hope_uj_clinic.Employee.models.PatientLocation;
+import com.example.hope_uj_clinic.Patient.UserHome;
 import com.example.hope_uj_clinic.databinding.ActivityOthersBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -80,7 +81,14 @@ public class OthersActivity extends AppCompatActivity {
                                                     "others", "In Progress", location.getLatitude(), location.getLongitude()
                                             );
                                             Toast.makeText(OthersActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
-                                            isDialogVisible = true;
+                                            isDialogVisible = false;
+                                            if (!isDialogVisible){
+                                                Intent intent = new Intent(OthersActivity.this, UserHome.class);
+                                                intent.putExtra("userType", "yourself");
+                                                intent.putExtra("user_id", patientLocation().getUserName());
+                                                startActivity(intent);
+                                                finish();
+                                            }
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
@@ -94,12 +102,12 @@ public class OthersActivity extends AppCompatActivity {
                     }
                 }), "track")
                 .commit();
-        if (!isDialogVisible){
-            Intent intent = new Intent(OthersActivity.this, EmergencyActivity.class);
-            intent.putExtra("userType", "yourself");
-            startActivity(intent);
-            finish();
-        }
+//        if (!isDialogVisible){
+//            Intent intent = new Intent(OthersActivity.this, EmergencyActivity.class);
+//            intent.putExtra("userType", "yourself");
+//            startActivity(intent);
+//            finish();
+//        }
     }
 
     private boolean isLocationEnabled() {
@@ -136,8 +144,9 @@ public class OthersActivity extends AppCompatActivity {
             Toast.makeText(OthersActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
             isDialogVisible = false;
             if (!isDialogVisible){
-                Intent intent = new Intent(OthersActivity.this, EmergencyActivity.class);
+                Intent intent = new Intent(OthersActivity.this, UserHome.class);
                 intent.putExtra("userType", "yourself");
+                intent.putExtra("user_id", patientLocation().getUserName());
                 startActivity(intent);
                 finish();
             }
@@ -173,8 +182,9 @@ public class OthersActivity extends AppCompatActivity {
                                 Toast.makeText(OthersActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
                                 isDialogVisible = false;
                                 if (!isDialogVisible){
-                                    Intent intent = new Intent(OthersActivity.this, EmergencyActivity.class);
+                                    Intent intent = new Intent(OthersActivity.this, UserHome.class);
                                     intent.putExtra("userType", "yourself");
+                                    intent.putExtra("user_id", patientLocation().getUserName());
                                     startActivity(intent);
                                     finish();
                                 }

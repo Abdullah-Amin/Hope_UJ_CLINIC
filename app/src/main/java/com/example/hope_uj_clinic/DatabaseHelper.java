@@ -255,7 +255,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
             int rowsUpdated = db.update(ORDERS, values, whereClause, whereArgs);
 
             if (rowsUpdated > 0) {
-                Toast.makeText(context, " > 0", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, " > 0", Toast.LENGTH_SHORT).show();
             } else {
                 // No rows were updated, check your condition
             }
