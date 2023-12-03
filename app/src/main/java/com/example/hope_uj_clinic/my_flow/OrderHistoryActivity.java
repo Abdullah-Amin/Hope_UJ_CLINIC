@@ -42,8 +42,10 @@ public class OrderHistoryActivity extends AppCompatActivity {
                     @Override
                     public void getOrder(PatientLocation patientLocation) {
                         Intent intent = new Intent(OrderHistoryActivity.this, OrderDetailsActivity.class);
+                        intent.putExtra("user", "employee");
                         intent.putExtra("patient", patientLocation);
                         startActivity(intent);
+                        finish();
                     }
                 }));
             }else {
@@ -51,30 +53,35 @@ public class OrderHistoryActivity extends AppCompatActivity {
                     @Override
                     public void getOrder(PatientLocation patientLocation) {
                         Intent intent = new Intent(OrderHistoryActivity.this, OrderDetailsActivity.class);
+                        intent.putExtra("user", "employee");
                         intent.putExtra("patient", patientLocation);
                         startActivity(intent);
+                        finish();
                     }
                 }));
             }
+//            binding.orderRecycler.setAdapter(new OrderHistoryAdapter(getDataFromDatabase(), userType, new OrderDetailsI() {
+//                @Override
+//                public void getOrder(PatientLocation patientLocation) {
+//                    Intent intent = new Intent(OrderHistoryActivity.this, OrderDetailsActivity.class);
+////                    patientLocation.setUser("employee");
+//                    intent.putExtra("patient", patientLocation);
+//                    intent.putExtra("user", "employee");
+//                    startActivity(intent);
+//                }
+//            }));
+        }else{
             binding.orderRecycler.setAdapter(new OrderHistoryAdapter(getDataFromDatabase(), userType, new OrderDetailsI() {
                 @Override
                 public void getOrder(PatientLocation patientLocation) {
                     Intent intent = new Intent(OrderHistoryActivity.this, OrderDetailsActivity.class);
+                    intent.putExtra("user", "user");
                     intent.putExtra("patient", patientLocation);
                     startActivity(intent);
+                    finish();
                 }
             }));
         }
-
-
-        binding.orderRecycler.setAdapter(new OrderHistoryAdapter(getDataFromDatabase(), userType, new OrderDetailsI() {
-            @Override
-            public void getOrder(PatientLocation patientLocation) {
-                Intent intent = new Intent(OrderHistoryActivity.this, OrderDetailsActivity.class);
-                intent.putExtra("patient", patientLocation);
-                startActivity(intent);
-            }
-        }));
     }
 
     public ArrayList<PatientLocation> getDataFromDatabase() {
@@ -86,7 +93,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
             Toast.makeText(this, "There is no data", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
-                Log.i("abdo", "getDataFromDatabase: " + cursor.getString(0) + cursor.getString(3));
+                Log.i("abdo", "getDataFromDatabase: all " + cursor.getString(0) + " - " + cursor.getString(3));
                 SharedPreferences preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
                 String userId = preferences.getString("userId", "");
                 String userType = preferences.getString("userType", "");
@@ -130,11 +137,11 @@ public class OrderHistoryActivity extends AppCompatActivity {
             Toast.makeText(this, "There is no data", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
-                Log.i("abdo", "getDataFromDatabase: " + cursor.getString(0) + cursor.getString(3));
+                Log.i("abdo", "getDataFromDatabase: new " + cursor.getString(0) + " - " + cursor.getString(3));
                 SharedPreferences preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
                 String userId = preferences.getString("userId", "");
 
-                if (Objects.equals(cursor.getString(2), userId)) {
+//                if (Objects.equals(cursor.getString(2), userId)) {
                     locations.add(new PatientLocation(
                             cursor.getString(3),
                             cursor.getString(0),
@@ -145,9 +152,10 @@ public class OrderHistoryActivity extends AppCompatActivity {
                             cursor.getString(6),
                             cursor.getString(7),
                             cursor.getString(8)));
-                }
+//                }
             }
         }
+//        Log.i("abdo", "getNewOrders: " + locations.get(0).toString());
         return locations;
     }
 
@@ -160,11 +168,11 @@ public class OrderHistoryActivity extends AppCompatActivity {
             Toast.makeText(this, "There is no data", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
-                Log.i("abdo", "getDataFromDatabase: " + cursor.getString(0) + cursor.getString(3));
+                Log.i("abdo", "getDataFromDatabase: completed " + cursor.getString(0) + " - " + cursor.getString(3));
                 SharedPreferences preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
                 String userId = preferences.getString("userId", "");
 
-                if (Objects.equals(cursor.getString(2), userId)) {
+//                if (Objects.equals(cursor.getString(2), userId)) {
                     locations.add(new PatientLocation(
                             cursor.getString(3),
                             cursor.getString(0),
@@ -175,9 +183,15 @@ public class OrderHistoryActivity extends AppCompatActivity {
                             cursor.getString(6),
                             cursor.getString(7),
                             cursor.getString(8)));
-                }
+//                }
             }
         }
         return locations;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
 }

@@ -17,6 +17,8 @@ public class PatientLocation implements Parcelable {
     private String latitude;
     private String longitude;
 
+    private String user;
+
     public PatientLocation(String patientId, String orderId, String userName,
                            String name, String note, String personType,
                            String orderState, String latitude, String longitude) {
@@ -56,6 +58,14 @@ public class PatientLocation implements Parcelable {
             return new PatientLocation[size];
         }
     };
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     public String getOrderState() {
         return orderState;

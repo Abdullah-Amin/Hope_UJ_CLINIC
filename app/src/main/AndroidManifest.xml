@@ -18,10 +18,10 @@
         android:theme="@style/Theme.Hope_Uj_Clinic"
         tools:targetApi="31">
         <activity
-            android:name=".ConditionActivity"
+            android:name=".my_flow.ConditionActivity"
             android:exported="false" />
         <activity
-            android:name=".ConditionClassifierActivity"
+            android:name=".my_flow.ConditionClassifierActivity"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.

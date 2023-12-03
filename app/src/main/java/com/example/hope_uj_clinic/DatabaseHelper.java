@@ -239,24 +239,29 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         return cursor;
     }
 
-    public void updateOrderWith(String userId, String newOrderState){
+    public void updateOrderWith(String orderId, String newOrderState){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(ORDER_STATUS, newOrderState);
 
-        String whereClause = USER_ID + " = ?";
-        String[] whereArgs = {String.valueOf(userId)};
+        Log.i("abdo", "updateOrderWith: " + orderId);
+
+        String whereClause = "ID=?";
+        String[] whereArgs = {String.valueOf(orderId)};
+
 
         try {
             int rowsUpdated = db.update(ORDERS, values, whereClause, whereArgs);
 
             if (rowsUpdated > 0) {
-//                Toast.makeText(context, "O", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, " > 0", Toast.LENGTH_SHORT).show();
             } else {
                 // No rows were updated, check your condition
             }
-        } finally {
+        } catch (Throwable e){
+            Log.i("abdo", "updateOrderWith: " + e.getLocalizedMessage());
+        } finally{
             db.close(); // Close the database connection
         }
     }

@@ -270,7 +270,8 @@
                 android:layout_marginVertical="@dimen/_40sdp"
                 app:layout_constraintTop_toBottomOf="@id/notesLayout"
                 app:layout_constraintStart_toStartOf="@id/notesLayout"
-                app:layout_constraintEnd_toEndOf="@id/notesLayout" />
+                app:layout_constraintEnd_toEndOf="@id/notesLayout"
+                app:layout_constraintBottom_toTopOf="@id/completeBtn"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/completeBtn"
@@ -284,7 +285,6 @@
                 android:backgroundTint="#09347A"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_30sdp"
-                app:layout_constraintTop_toBottomOf="@id/mapFrame"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
