@@ -44,18 +44,19 @@ public class OrderHistoryActivity extends AppCompatActivity {
                     public void getOrder(PatientLocation patientLocation) {
                         Intent intent = new Intent(OrderHistoryActivity.this, OrderDetailsActivity.class);
                         intent.putExtra("user", "employee");
+                        intent.putExtra("order_state", "inProgress");
                         intent.putExtra("patient", patientLocation);
                         startActivity(intent);
                         OrderHistoryActivity.this.finish();
                     }
                 }));
             }else {
-
                 binding.orderRecycler.setAdapter(new OrderHistoryAdapter(getCompletedOrders(), userType, new OrderDetailsI() {
                     @Override
                     public void getOrder(PatientLocation patientLocation) {
                         Intent intent = new Intent(OrderHistoryActivity.this, OrderDetailsActivity.class);
                         intent.putExtra("user", "employee");
+                        intent.putExtra("order_state", "complete");
                         intent.putExtra("patient", patientLocation);
                         startActivity(intent);
                         OrderHistoryActivity.this.finish();

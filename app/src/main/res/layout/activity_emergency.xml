@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Orders"
+        android:text="Emergency"
 
         android:textSize="@dimen/_40sdp"
         android:textColor="#043E9F"
@@ -34,7 +34,7 @@
         android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_100sdp"
         android:onClick="newOrder"
-        android:text="New Order"
+        android:text="New Orders"
         android:textAllCaps="false"
         android:textSize="@dimen/_23sdp"
         app:cornerRadius="@dimen/_10sdp"
@@ -49,7 +49,7 @@
         android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_100sdp"
         android:onClick="orderHistory"
-        android:text="Order History"
+        android:text="Orders History"
         android:textAllCaps="false"
         android:textSize="@dimen/_23sdp"
         app:cornerRadius="@dimen/_10sdp"

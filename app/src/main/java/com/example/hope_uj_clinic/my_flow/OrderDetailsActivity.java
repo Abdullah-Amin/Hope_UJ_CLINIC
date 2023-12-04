@@ -34,6 +34,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         location = getIntent().getParcelableExtra("patient");
         user = getIntent().getStringExtra("user");
+        String state = getIntent().getStringExtra("order_state");
 
         if (user.equals("employee")){
             if (location.getPersonType().equals("yourself") || location.getPersonType().equals("himself")){
@@ -41,7 +42,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 binding.idLayout.setVisibility(View.GONE);
                 binding.nameTV.setVisibility(View.GONE);
                 binding.idTV.setVisibility(View.GONE);
-//                binding.completeBtn.setVisibility(View.GONE);
+            }
+
+            if (state.equals("complete")){
+                binding.completeBtn.setVisibility(View.GONE);
             }
 
             binding.patientID.setText(location.getPatientId());
