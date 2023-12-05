@@ -168,6 +168,8 @@ public class OthersActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 client.getLastLocation()
                         .addOnSuccessListener(new OnSuccessListener<Location>() {
+
+
                             @Override
                             public void onSuccess(Location location) {
                                 Log.i("abdo", "onSuccess: " + location.getLatitude());

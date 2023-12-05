@@ -41,6 +41,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     public void onBindViewHolder(@NonNull Holder holder, int position) {
 
         holder.binding.orderId.setText(patientLocation.get(position).getOrderId());
+        //1234567 @ uj.edu.sa
         String userName = patientLocation.get(position).getUserName().split("@")[0];
         holder.binding.mrn.setText("MRN - ".concat(userName));
         holder.binding.orderStatus.setText("Order Status: ".concat(patientLocation.get(position).getOrderState()));
