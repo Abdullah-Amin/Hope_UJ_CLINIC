@@ -41,6 +41,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/hrImage"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/image_background"
+                android:src="@drawable/heart"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
             <TextView
                 android:id="@+id/HRTxt"
                 android:layout_width="wrap_content"
@@ -49,14 +61,11 @@
                 android:textColor="#09347A"
                 android:textStyle="bold"
                 android:textSize="@dimen/_18sdp"
-                android:drawableStart="@drawable/person"
-                android:drawableTint="@color/black"
-                android:paddingStart="@dimen/_5sdp"
                 android:gravity="center"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:layout_marginStart="@dimen/_5sdp"
+                app:layout_constraintTop_toTopOf="@id/hrImage"
+                app:layout_constraintBottom_toBottomOf="@id/hrImage"
+                app:layout_constraintStart_toEndOf="@id/hrImage"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/HRLayout"
@@ -64,23 +73,36 @@
                 android:layout_height="@dimen/_50sdp"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
+                android:hint="Heart Rate"
                 app:boxCornerRadiusTopStart="@dimen/_15sdp"
                 app:boxCornerRadiusTopEnd="@dimen/_15sdp"
                 app:boxCornerRadiusBottomStart="@dimen/_15sdp"
                 app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginStart="@dimen/_28sdp"
-                app:layout_constraintTop_toBottomOf="@id/HRTxt"
-                app:layout_constraintStart_toStartOf="@id/HRTxt">
+                app:layout_constraintTop_toBottomOf="@id/hrImage"
+                app:layout_constraintStart_toStartOf="@id/hrImage">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/HREt"
-                    android:hint="Heart Rate"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="#B9E1F3"
                     android:background="@drawable/et_corners"/>
             </com.google.android.material.textfield.TextInputLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/respImage"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/image_background"
+                android:src="@drawable/lungs"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintTop_toBottomOf="@id/HRLayout"
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/respTxt"
@@ -90,14 +112,11 @@
                 android:textColor="#09347A"
                 android:textStyle="bold"
                 android:textSize="@dimen/_18sdp"
-                android:drawableStart="@drawable/three"
-                android:drawableTint="@color/black"
-                android:paddingStart="@dimen/_5sdp"
                 android:gravity="center"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/HRLayout"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:layout_marginStart="@dimen/_5sdp"
+                app:layout_constraintBottom_toBottomOf="@id/respImage"
+                app:layout_constraintTop_toTopOf="@id/respImage"
+                app:layout_constraintStart_toEndOf="@id/respImage"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/respLayout"
@@ -105,23 +124,36 @@
                 android:layout_height="@dimen/_50sdp"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
+                android:hint="Respiration Rate"
                 app:boxCornerRadiusTopStart="@dimen/_15sdp"
                 app:boxCornerRadiusTopEnd="@dimen/_15sdp"
                 app:boxCornerRadiusBottomStart="@dimen/_15sdp"
                 app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginStart="@dimen/_28sdp"
-                app:layout_constraintTop_toBottomOf="@id/respTxt"
-                app:layout_constraintStart_toStartOf="@id/respTxt">
+                app:layout_constraintTop_toBottomOf="@id/respImage"
+                app:layout_constraintStart_toStartOf="@id/respImage">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/respEt"
-                    android:hint="Respiration Rate"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="#B9E1F3"
                     android:background="@drawable/et_corners"/>
             </com.google.android.material.textfield.TextInputLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/spImage"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/image_background"
+                android:src="@drawable/three"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintTop_toBottomOf="@id/respLayout"
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/oxygenTxt"
@@ -131,14 +163,11 @@
                 android:textColor="#09347A"
                 android:textStyle="bold"
                 android:textSize="@dimen/_18sdp"
-                android:drawableStart="@drawable/oxy"
-                android:drawableTint="@color/black"
-                android:paddingStart="@dimen/_5sdp"
                 android:gravity="center"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/respLayout"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:layout_marginStart="@dimen/_5sdp"
+                app:layout_constraintBottom_toBottomOf="@id/spImage"
+                app:layout_constraintTop_toTopOf="@id/spImage"
+                app:layout_constraintStart_toEndOf="@id/spImage"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/oxygenLayout"
@@ -146,23 +175,36 @@
                 android:layout_height="@dimen/_50sdp"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
+                android:hint="Oxygen Saturation"
                 app:boxCornerRadiusTopStart="@dimen/_15sdp"
                 app:boxCornerRadiusTopEnd="@dimen/_15sdp"
                 app:boxCornerRadiusBottomStart="@dimen/_15sdp"
                 app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginStart="@dimen/_28sdp"
-                app:layout_constraintTop_toBottomOf="@id/oxygenTxt"
-                app:layout_constraintStart_toStartOf="@id/oxygenTxt">
+                app:layout_constraintTop_toBottomOf="@id/spImage"
+                app:layout_constraintStart_toStartOf="@id/spImage">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/oxygenEt"
-                    android:hint="Oxygen Saturation"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="#B9E1F3"
                     android:background="@drawable/et_corners"/>
             </com.google.android.material.textfield.TextInputLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/tempImage"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/image_background"
+                android:src="@drawable/thermostat"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintTop_toBottomOf="@id/oxygenLayout"
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/tempTxt"
@@ -172,14 +214,11 @@
                 android:textColor="#09347A"
                 android:textStyle="bold"
                 android:textSize="@dimen/_18sdp"
-                android:drawableStart="@drawable/thermostat"
-                android:drawableTint="@color/black"
-                android:paddingStart="@dimen/_5sdp"
                 android:gravity="center"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/oxygenLayout"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:layout_marginStart="@dimen/_5sdp"
+                app:layout_constraintTop_toTopOf="@id/tempImage"
+                app:layout_constraintStart_toEndOf="@id/tempImage"
+                app:layout_constraintBottom_toBottomOf="@id/tempImage"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tempLayout"
@@ -187,18 +226,19 @@
                 android:layout_height="@dimen/_50sdp"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
+                android:hint="Temperature"
                 app:boxCornerRadiusTopStart="@dimen/_15sdp"
                 app:boxCornerRadiusTopEnd="@dimen/_15sdp"
                 app:boxCornerRadiusBottomStart="@dimen/_15sdp"
                 app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginStart="@dimen/_28sdp"
-                app:layout_constraintTop_toBottomOf="@id/tempTxt"
-                app:layout_constraintStart_toStartOf="@id/tempTxt">
+                app:layout_constraintTop_toBottomOf="@id/tempImage"
+                app:layout_constraintStart_toStartOf="@id/tempImage">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tempEt"
-                    android:hint="Temperature"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="#B9E1F3"
