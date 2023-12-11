@@ -21,6 +21,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
 
     ActivityOrderHistoryBinding binding;
     ArrayList<PatientLocation> locations = null;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +31,10 @@ public class OrderHistoryActivity extends AppCompatActivity {
 
         locations = new ArrayList<>();
 
+        preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
+        String orderState = preferences.getString("orderState", "old");
+
         String userType = getIntent().getStringExtra("userType");
-        String orderState = getIntent().getStringExtra("orderState");
         Log.i("abdo", "orderHistory: before adapter " + userType);
 
         if (userType.equals("employee")) {
@@ -47,7 +50,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
                         intent.putExtra("order_state", "inProgress");
                         intent.putExtra("patient", patientLocation);
                         startActivity(intent);
-                        OrderHistoryActivity.this.finish();
+//                        OrderHistoryActivity.this.finish();
                     }
                 }));
             }else {
@@ -59,7 +62,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
                         intent.putExtra("order_state", "complete");
                         intent.putExtra("patient", patientLocation);
                         startActivity(intent);
-                        OrderHistoryActivity.this.finish();
+//                        OrderHistoryActivity.this.finish();
                     }
                 }));
             }
@@ -81,7 +84,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
                     intent.putExtra("user", "user");
                     intent.putExtra("patient", patientLocation);
                     startActivity(intent);
-                    OrderHistoryActivity.this.finish();
+//                    OrderHistoryActivity.this.finish();
                 }
             }));
         }

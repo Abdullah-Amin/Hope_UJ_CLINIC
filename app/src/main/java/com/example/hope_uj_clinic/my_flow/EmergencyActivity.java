@@ -15,6 +15,9 @@ public class EmergencyActivity extends AppCompatActivity {
 
     String userType;
     String userId;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +26,8 @@ public class EmergencyActivity extends AppCompatActivity {
         userType = getIntent().getStringExtra("userType");
         userId = getIntent().getStringExtra("user_id");
 
-        SharedPreferences preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+        preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
+        editor = preferences.edit();
         editor.putString("userId", userId);
         editor.putString("userType", userType);
         editor.apply();
@@ -35,6 +38,7 @@ public class EmergencyActivity extends AppCompatActivity {
             Intent intent = new Intent(EmergencyActivity.this, OrderHistoryActivity.class);
             intent.putExtra("userType", userType);
             intent.putExtra("orderState", "new");
+            editor.putString("orderState", "new");
             Log.i("abdo", "orderHistory: " + userType);
             startActivity(intent);
             EmergencyActivity.this.finish();
@@ -44,16 +48,17 @@ public class EmergencyActivity extends AppCompatActivity {
         intent.putExtra("userType", userType);
         intent.putExtra("user_id", userId);
         startActivity(intent);
-        EmergencyActivity.this.finish();
+//        EmergencyActivity.this.finish();
     }
 
     public void orderHistory(View view) {
         Intent intent = new Intent(EmergencyActivity.this, OrderHistoryActivity.class);
         intent.putExtra("userType", userType);
         intent.putExtra("orderState", "old");
+        editor.putString("orderState", "old");
         Log.i("abdo", "orderHistory: " + userType);
         intent.putExtra("user_id", userId);
         startActivity(intent);
-        EmergencyActivity.this.finish();
+//        EmergencyActivity.this.finish();
     }
 }

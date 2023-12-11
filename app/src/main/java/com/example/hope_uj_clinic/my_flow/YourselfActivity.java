@@ -36,6 +36,7 @@ public class YourselfActivity extends AppCompatActivity {
     FusedLocationProviderClient client;
     private ActivityYourselfBinding binding;
     private boolean isDialogVisible = true;
+    SharedPreferences preferences;
 
     private String userId;
     @Override
@@ -47,7 +48,9 @@ public class YourselfActivity extends AppCompatActivity {
         client = LocationServices
                 .getFusedLocationProviderClient(YourselfActivity.this);
 
-        userId = getIntent().getStringExtra("user_id");
+        preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
+        userId = preferences.getString("userId", "");
+//        userId = getIntent().getStringExtra("user_id");
     }
 
     public void send(View view) {

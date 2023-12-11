@@ -35,6 +35,7 @@ public class OthersActivity extends AppCompatActivity {
     FusedLocationProviderClient client;
     private ActivityOthersBinding binding;
     private boolean isDialogVisible = true;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,9 @@ public class OthersActivity extends AppCompatActivity {
 
         client = LocationServices
                 .getFusedLocationProviderClient(OthersActivity.this);
+
+        preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
+//        userId = preferences.getString("userId", "");
     }
 
     public void send(View view) {

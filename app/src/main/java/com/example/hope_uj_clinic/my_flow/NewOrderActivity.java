@@ -2,7 +2,9 @@ package com.example.hope_uj_clinic.my_flow;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,7 @@ public class NewOrderActivity extends AppCompatActivity {
     private String userType;
     private String userId;
 
+    SharedPreferences preferences;
     private ActivityNewOrderBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +25,12 @@ public class NewOrderActivity extends AppCompatActivity {
         binding = ActivityNewOrderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        userType = getIntent().getStringExtra("userType");
-        userId = getIntent().getStringExtra("user_id");
+        preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
+        userType = preferences.getString("userType", "");
+        userId = preferences.getString("userId", "");
+
+//        userType = getIntent().getStringExtra("userType");
+//        userId = getIntent().getStringExtra("user_id");
     }
 
     public void yourself(View view) {
