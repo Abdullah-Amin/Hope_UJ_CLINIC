@@ -10,13 +10,7 @@ import retrofit2.http.POST;
 public interface ConditionService {
 
     //https://ml-model-production.up.railway.app/predictApi
-//    @FormUrlEncoded
     @POST("predictApi")
     @Headers("Content-Type: application/json")
-    Call<PredictionResponse> getPrediction(@Body ConditionData conditionData
-//            @Field("HR") int hr,
-//            @Field("RESP") int resp,
-//            @Field("SpO2") int spo2,
-//            @Field("TEMP") int temp
-        );
+    Call<PredictionResponse> getPrediction(@Body ConditionData conditionData);
 }
