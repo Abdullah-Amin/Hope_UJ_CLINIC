@@ -56,10 +56,10 @@ public class ConditionClassifierActivity extends AppCompatActivity {
             return;
         }
 
-        int hr = Integer.parseInt(binding.HREt.getText().toString());
-        int resp = Integer.parseInt(binding.respEt.getText().toString());
-        int spo2 = Integer.parseInt(binding.oxygenEt.getText().toString());
-        int temp = Integer.parseInt(binding.tempEt.getText().toString());
+        double hr = Double.parseDouble(binding.HREt.getText().toString());
+        double resp = Double.parseDouble(binding.respEt.getText().toString());
+        double spo2 = Double.parseDouble(binding.oxygenEt.getText().toString());
+        double temp = Double.parseDouble(binding.tempEt.getText().toString());
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
