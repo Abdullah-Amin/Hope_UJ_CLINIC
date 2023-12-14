@@ -85,7 +85,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/HREt"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="#B9E1F3"
@@ -136,7 +136,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/respEt"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="#B9E1F3"
@@ -187,7 +187,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/oxygenEt"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="#B9E1F3"
@@ -238,7 +238,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tempEt"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="#B9E1F3"
