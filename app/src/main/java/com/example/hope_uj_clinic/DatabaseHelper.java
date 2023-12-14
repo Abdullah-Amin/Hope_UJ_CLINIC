@@ -250,32 +250,15 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         String whereClause = "ID=?";
         String[] whereArgs = {String.valueOf(orderId)};
 
-
         try {
-            int rowsUpdated = db.update(ORDERS, values, whereClause, whereArgs);
+            db.update(ORDERS, values, whereClause, whereArgs);
 
-            if (rowsUpdated > 0) {
-//                Toast.makeText(context, " > 0", Toast.LENGTH_SHORT).show();
-            } else {
-                // No rows were updated, check your condition
-            }
         } catch (Throwable e){
             Log.i("abdo", "updateOrderWith: " + e.getLocalizedMessage());
         } finally{
             db.close(); // Close the database connection
         }
     }
-
-//    public Cursor getYourselfOrders() {
-//        String query = "SELECT * FROM " + YOURSELF_ORDERS;
-//        SQLiteDatabase db = this.getReadableDatabase();
-//
-//        Cursor cursor = null;
-//        if (db != null) {
-//            cursor = db.rawQuery(query, null);
-//        }
-//        return cursor;
-//    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

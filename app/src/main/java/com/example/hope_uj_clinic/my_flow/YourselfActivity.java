@@ -83,7 +83,8 @@ public class YourselfActivity extends AppCompatActivity {
                                     Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
                                     isDialogVisible = false;
                                     if (!isDialogVisible){
-                                        Intent intent = new Intent(YourselfActivity.this, UserHome.class);
+                                        Intent intent = new Intent(YourselfActivity.this, NewOrderActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         intent.putExtra("userType", "yourself");
                                         intent.putExtra("user_id", patientLocation().getUserName());
                                         startActivity(intent);
@@ -140,7 +141,8 @@ public class YourselfActivity extends AppCompatActivity {
             Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
             isDialogVisible = false;
             if (!isDialogVisible){
-                Intent intent = new Intent(YourselfActivity.this, EmergencyActivity.class);
+                Intent intent = new Intent(YourselfActivity.this, NewOrderActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("userType", "yourself");
                 intent.putExtra("user_id", patientLocation().getUserName());
                 startActivity(intent);
@@ -175,7 +177,8 @@ public class YourselfActivity extends AppCompatActivity {
                                 Toast.makeText(YourselfActivity.this, "Order sent successfully", Toast.LENGTH_LONG).show();
                                 isDialogVisible = false;
                                 if (!isDialogVisible){
-                                    Intent intent = new Intent(YourselfActivity.this, UserHome.class);
+                                    Intent intent = new Intent(YourselfActivity.this, NewOrderActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     intent.putExtra("userType", "yourself");
                                     intent.putExtra("user_id", patientLocation().getUserName());
                                     startActivity(intent);

@@ -26,11 +26,12 @@ public class EmergencyActivity extends AppCompatActivity {
         userType = getIntent().getStringExtra("userType");
         userId = getIntent().getStringExtra("user_id");
 
+        Log.i("abdo", "onCreate: emerg " + userId);
+
         preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
         editor = preferences.edit();
         editor.putString("userId", userId);
         editor.putString("userType", userType);
-        editor.apply();
     }
 
     public void newOrder(View view) {
@@ -40,13 +41,15 @@ public class EmergencyActivity extends AppCompatActivity {
             intent.putExtra("orderState", "new");
             editor.putString("orderState", "new");
             Log.i("abdo", "orderHistory: " + userType);
+            editor.apply();
             startActivity(intent);
-            EmergencyActivity.this.finish();
+//            EmergencyActivity.this.finish();
             return;
         }
         Intent intent = new Intent(EmergencyActivity.this, NewOrderActivity.class);
         intent.putExtra("userType", userType);
         intent.putExtra("user_id", userId);
+        editor.apply();
         startActivity(intent);
 //        EmergencyActivity.this.finish();
     }
@@ -58,6 +61,7 @@ public class EmergencyActivity extends AppCompatActivity {
         editor.putString("orderState", "old");
         Log.i("abdo", "orderHistory: " + userType);
         intent.putExtra("user_id", userId);
+        editor.apply();
         startActivity(intent);
 //        EmergencyActivity.this.finish();
     }

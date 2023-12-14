@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.hope_uj_clinic.DatabaseHelper;
 import com.example.hope_uj_clinic.Employee.models.PatientLocation;
+import com.example.hope_uj_clinic.Patient.UserHome;
 import com.example.hope_uj_clinic.R;
 import com.example.hope_uj_clinic.databinding.ActivityOredrDeatailsBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -107,6 +108,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Toast.makeText(this, "Order set completed", Toast.LENGTH_LONG).show();
 
         location.setOrderState("Completed");
+
+        Intent intent = new Intent(OrderDetailsActivity.this, EmergencyActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         OrderDetailsActivity.this.finish();
     }
 
