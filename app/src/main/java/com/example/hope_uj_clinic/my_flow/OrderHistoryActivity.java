@@ -34,7 +34,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
         preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
         String orderState = preferences.getString("orderState", "old");
 
-        String userType = getIntent().getStringExtra("userType");
+        String userType = preferences.getString("userType", "user");
         Log.i("abdo", "orderHistory: before adapter " + userType);
 
         if (userType.equals("employee")) {

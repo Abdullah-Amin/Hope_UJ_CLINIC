@@ -1,7 +1,9 @@
 package com.example.hope_uj_clinic.Patient;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -28,6 +30,8 @@ public class UserHome extends AppCompatActivity {
     String idNationality;
     String birth;
     ActivityUserHomeBinding binding;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,13 @@ public class UserHome extends AppCompatActivity {
         userId = getIntent().getStringExtra("user_id");
         Log.i("abdo", "onCreate: home " + userId);
 
+        preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        editor.putString("userId", userId);
+        editor.putString("userType", "user");
+
         binding.constraintLayout.setOnClickListener(view -> {
+            editor.apply();
             Intent intent = new Intent(this, EmergencyActivity.class);
             intent.putExtra("userType", "patient");
             intent.putExtra("user_id", userId);

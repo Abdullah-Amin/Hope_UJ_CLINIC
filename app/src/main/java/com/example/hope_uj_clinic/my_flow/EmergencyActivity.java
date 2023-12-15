@@ -23,12 +23,14 @@ public class EmergencyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency);
 
-        userType = getIntent().getStringExtra("userType");
-        userId = getIntent().getStringExtra("user_id");
-
-        Log.i("abdo", "onCreate: emerg " + userId);
-
         preferences = getSharedPreferences("userId", Context.MODE_PRIVATE);
+
+        userType = preferences.getString("userType", "null");
+
+        userId = preferences.getString("userId", "user");
+
+        Log.i("abdo", "onCreate: emerg " + userType);
+
         editor = preferences.edit();
         editor.putString("userId", userId);
         editor.putString("userType", userType);
